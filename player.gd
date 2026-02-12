@@ -33,11 +33,11 @@ func _process(delta: float) -> void:
 	if (Input.is_action_just_pressed("stand_up") or Input.is_action_just_pressed("toggle_sit")) and current_anim == "sit_idle":
 		$AnimatedSprite2D.play("stand")
 	
-	# TODO: handle interactions with other Area2Ds
+	# Handle interactions with other Area2Ds
 	var touching_areas = get_overlapping_areas()
 	if !touching_areas.is_empty():
 		# Find the touching area that is closest (by global position)
-		var closest_dist = 1000
+		var closest_dist = 10000
 		var closest_area: Area2D = null
 		for i in range(touching_areas.size()):
 			var area_checking: Area2D = touching_areas[i]

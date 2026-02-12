@@ -4,10 +4,16 @@ signal assign(task: CheckBox)
 signal turn_in(task: CheckBox)
 
 @export var target_player: Area2D
+@export var dullness: float = 0.8
 var assignment: CheckBox
 
 
 func _ready() -> void:
+	# Dull sprite slightly
+	modulate.a = dullness
+	# Look for the Player in the scene
+	if !target_player:
+		target_player = get_tree().get_root().find_child("Player")
 	# If I have a Task as a child, manage it
 	assignment = get_node_or_null("Task")
 	if assignment != null:
@@ -16,6 +22,10 @@ func _ready() -> void:
 
 func _on_player_interact(area: Area2D) -> void:
 	if self == area:
+		if global_position.x > target_player.global_position.x:
+			$AnimatedSprite2D.flip_h = true
+		else:
+			$AnimatedSprite2D.flip_h = false
 		# Check if I am a turn-in point for any tasks
 		for i in range(Gamestate.active_tasks.size()):
 			var task = Gamestate.active_tasks.get(i)
@@ -29,11 +39,11 @@ func _on_player_interact(area: Area2D) -> void:
 
 func _on_player_highlight(area: Area2D) -> void:
 	if self == area:
-		# TODO: animate
-		pass
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "modulate:a", 1.0, 0.2)
 
 
 func _on_player_unhighlight(area: Area2D) -> void:
 	if self == area:
-		# TODO: animate
-		pass
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "modulate:a", dullness, 0.2)
