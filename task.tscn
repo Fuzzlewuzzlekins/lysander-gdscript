@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwfxmpapwke63"]
+
+[ext_resource type="Script" uid="uid://bjyhhxc2ovsw6" path="res://task.gd" id="1_3qm7i"]
+
+[node name="Task" type="CheckBox"]
+button_mask = 0
+text = "Complete task"
+script = ExtResource("1_3qm7i")

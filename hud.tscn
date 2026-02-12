@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bue6448e60wtb"]
+
+[ext_resource type="Script" uid="uid://bx222xkndh2x8" path="res://hud.gd" id="1_37p78"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_37p78")
+
+[node name="TopRightPanel" type="VBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -232.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 70.0
+grow_horizontal = 0
+
+[node name="EnergyBar" type="ProgressBar" parent="TopRightPanel"]
+layout_mode = 2
+
+[node name="TaskList" type="VBoxContainer" parent="TopRightPanel"]
+layout_mode = 2
