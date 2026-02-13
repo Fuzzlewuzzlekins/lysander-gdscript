@@ -7,6 +7,8 @@ signal turn_in_unwarn(task: CheckBox)
 
 @export var target_player: Area2D
 @export var dullness: float = 0.8
+@export var behavior: Array[Dictionary] = [{"animation":"idle","speed":0.0,"flip_h":true,"duration":1.0}]
+var behavior_elapsed_time: float
 var assignment: CheckBox
 
 
@@ -20,6 +22,22 @@ func _ready() -> void:
 	assignment = get_node_or_null("Task")
 	if assignment != null:
 		assignment.hide()
+	# Initialize behavior timer
+	behavior_elapsed_time = 0.0
+
+
+func _process(delta: float) -> void:
+	# Tick the behavior timer
+	behavior_elapsed_time += delta
+	if behavior_elapsed_time > behavior[0]["duration"]:
+		# If it's time for the next behavior, reset timer and move current behavior to the end of the list.
+		behavior_elapsed_time -= behavior[0]["duration"]
+		var old_behavior = behavior.pop_front()
+		behavior.append(old_behavior)
+	# Handle behavior. Keys: "animation", "speed", "flip_h", duration"
+	$AnimatedSprite2D.play(behavior[0]["animation"])
+	$AnimatedSprite2D.flip_h = behavior[0]["flip_h"]
+	position.x += behavior[0]["speed"] * delta
 
 
 func _on_player_interact(area: Area2D) -> void:

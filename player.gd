@@ -5,7 +5,7 @@ signal highlight(area: Area2D)
 signal unhighlight(area: Area2D)
 
 @export var speed: float = 200
-@export var anim_frame_rate: float = 10
+#@export var anim_frame_rate: float = 10
 var closest_entity: Area2D = null
 
 

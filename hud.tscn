@@ -1,6 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://bue6448e60wtb"]
+[gd_scene load_steps=5 format=3 uid="uid://bue6448e60wtb"]
 
 [ext_resource type="Script" uid="uid://bx222xkndh2x8" path="res://hud.gd" id="1_37p78"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37p78"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8sq4i"]
+bg_color = Color(0.2509804, 0.2509804, 0.2509804, 0.2509804)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64ctp"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_37p78")
@@ -9,21 +38,24 @@ script = ExtResource("1_37p78")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -264.0
+offset_left = -296.0
 offset_top = 8.0
 offset_right = -8.0
 offset_bottom = 70.0
 grow_horizontal = 0
 
 [node name="EnergyBarBase" type="ProgressBar" parent="TopRightPanel"]
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_37p78")
 show_percentage = false
 
 [node name="EnergyBarOverlay" type="ProgressBar" parent="TopRightPanel/EnergyBarBase"]
 layout_mode = 0
-offset_right = 256.0
-offset_bottom = 32.0
+offset_right = 288.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_8sq4i")
+theme_override_styles/fill = SubResource("StyleBoxFlat_64ctp")
 show_percentage = false
 
 [node name="TaskList" type="VBoxContainer" parent="TopRightPanel"]
