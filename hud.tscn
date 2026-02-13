@@ -9,14 +9,22 @@ script = ExtResource("1_37p78")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -232.0
+offset_left = -264.0
 offset_top = 8.0
 offset_right = -8.0
 offset_bottom = 70.0
 grow_horizontal = 0
 
-[node name="EnergyBar" type="ProgressBar" parent="TopRightPanel"]
+[node name="EnergyBarBase" type="ProgressBar" parent="TopRightPanel"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+show_percentage = false
+
+[node name="EnergyBarOverlay" type="ProgressBar" parent="TopRightPanel/EnergyBarBase"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 32.0
+show_percentage = false
 
 [node name="TaskList" type="VBoxContainer" parent="TopRightPanel"]
 layout_mode = 2

@@ -19,6 +19,7 @@ target_player = NodePath("../Player")
 
 [node name="Task" parent="NPC" node_paths=PackedStringArray("turn_in") instance=ExtResource("2_sasra")]
 text = "Go talk to the yellow guy"
+energy_cost = 50
 turn_in = NodePath("../../NPC2")
 
 [node name="NPC2" parent="." node_paths=PackedStringArray("target_player") instance=ExtResource("2_ia1lp")]
@@ -39,6 +40,8 @@ limit_bottom = 800
 
 [connection signal="assign" from="NPC" to="HUD" method="_on_npc_assign"]
 [connection signal="turn_in" from="NPC2" to="HUD" method="_on_npc_turn_in"]
+[connection signal="turn_in_unwarn" from="NPC2" to="HUD" method="_on_npc_turn_in_unwarn"]
+[connection signal="turn_in_warn" from="NPC2" to="HUD" method="_on_npc_turn_in_warn"]
 [connection signal="highlight" from="Player" to="NPC" method="_on_player_highlight"]
 [connection signal="highlight" from="Player" to="NPC2" method="_on_player_highlight"]
 [connection signal="interact" from="Player" to="NPC" method="_on_player_interact"]
