@@ -7,7 +7,7 @@ signal turn_in_unwarn(task: CheckBox)
 
 @export var target_player: Area2D
 @export var dullness: float = 0.8
-@export var behavior: Array[Dictionary] = [{"animation":"idle","speed":0.0,"flip_h":true,"duration":1.0}]
+@export var behavior: Array[Resource]
 var behavior_elapsed_time: float
 var assignment: CheckBox
 

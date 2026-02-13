@@ -1,9 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://bipuq40godms2"]
+[gd_scene load_steps=11 format=3 uid="uid://bipuq40godms2"]
 
 [ext_resource type="PackedScene" uid="uid://bfhhyigp58xxk" path="res://player.tscn" id="1_uhqqe"]
 [ext_resource type="PackedScene" uid="uid://b6rg1hfp63y7e" path="res://npc.tscn" id="2_ia1lp"]
 [ext_resource type="PackedScene" uid="uid://cwfxmpapwke63" path="res://task.tscn" id="2_sasra"]
+[ext_resource type="Script" uid="uid://bg13hbqhqin30" path="res://behavior.gd" id="3_2nij2"]
 [ext_resource type="PackedScene" uid="uid://bue6448e60wtb" path="res://hud.tscn" id="4_coq8p"]
+
+[sub_resource type="Resource" id="Resource_2nij2"]
+resource_name = "Behavior"
+script = ExtResource("3_2nij2")
+animation = "idle"
+duration = 1.0
+
+[sub_resource type="Resource" id="Resource_7cbxl"]
+resource_name = "Behavior"
+script = ExtResource("3_2nij2")
+animation = "idle"
+duration = 2.0
+
+[sub_resource type="Resource" id="Resource_8pr8v"]
+resource_name = "Behavior"
+script = ExtResource("3_2nij2")
+animation = "walk"
+speed = -200.0
+flip_h = true
+duration = 1.0
+
+[sub_resource type="Resource" id="Resource_buypi"]
+resource_name = "Behavior"
+script = ExtResource("3_2nij2")
+animation = "idle"
+flip_h = true
+duration = 2.0
+
+[sub_resource type="Resource" id="Resource_njel3"]
+resource_name = "Behavior"
+script = ExtResource("3_2nij2")
+animation = "walk"
+speed = 200.0
+duration = 1.0
 
 [node name="TestScene" type="Node2D"]
 
@@ -16,6 +51,7 @@ color = Color(0, 0, 0, 1)
 modulate = Color(0.8627451, 0.6392157, 1, 1)
 position = Vector2(896, 400)
 target_player = NodePath("../Player")
+behavior = Array[Resource]([SubResource("Resource_2nij2")])
 
 [node name="Task" parent="NPC" node_paths=PackedStringArray("turn_in") instance=ExtResource("2_sasra")]
 text = "Go talk to the yellow guy"
@@ -26,27 +62,7 @@ turn_in = NodePath("../../NPC2")
 modulate = Color(1, 1, 0.5019608, 1)
 position = Vector2(416, 400)
 target_player = NodePath("../Player")
-behavior = Array[Dictionary]([{
-"animation": "idle",
-"duration": 2.0,
-"flip_h": false,
-"speed": 0.0
-}, {
-"animation": "walk",
-"duration": 1.0,
-"flip_h": true,
-"speed": -200.0
-}, {
-"animation": "idle",
-"duration": 2.0,
-"flip_h": true,
-"speed": 0.0
-}, {
-"animation": "walk",
-"duration": 1.0,
-"flip_h": false,
-"speed": 200.0
-}])
+behavior = Array[Resource]([SubResource("Resource_7cbxl"), SubResource("Resource_8pr8v"), SubResource("Resource_buypi"), SubResource("Resource_njel3")])
 
 [node name="Player" parent="." instance=ExtResource("1_uhqqe")]
 position = Vector2(640, 400)
