@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://bfhhyigp58xxk"]
 
 [ext_resource type="Texture2D" uid="uid://muyfm6kbnuj4" path="res://assets/lysander_temp_sprite.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://chstppc2wpqiq" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://chstppc2wpqiq" path="res://elements/player.gd" id="1_onrkg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("1_4flbx")

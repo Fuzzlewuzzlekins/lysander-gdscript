@@ -1,8 +1,8 @@
 [gd_scene load_steps=22 format=3 uid="uid://b6rg1hfp63y7e"]
 
-[ext_resource type="Script" uid="uid://ce2f4sl7gq3ix" path="res://npc.gd" id="1_xxcha"]
+[ext_resource type="Script" uid="uid://ce2f4sl7gq3ix" path="res://elements/npc.gd" id="1_xxcha"]
 [ext_resource type="Texture2D" uid="uid://muyfm6kbnuj4" path="res://assets/lysander_temp_sprite.png" id="2_kh24r"]
-[ext_resource type="Resource" uid="uid://uv0hrlw04aqb" path="res://behavior.tres" id="2_ul7y6"]
+[ext_resource type="Resource" uid="uid://uv0hrlw04aqb" path="res://elements/behavior.tres" id="2_ul7y6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("2_kh24r")

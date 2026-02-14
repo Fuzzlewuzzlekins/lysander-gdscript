@@ -9,16 +9,16 @@ func _ready() -> void:
 	$TopRightPanel/EnergyBarBase/EnergyBarOverlay.value = Gamestate.current_energy
 
 
-func _on_npc_assign(task: CheckBox) -> void:
+func _on_entity_assign(task: CheckBox) -> void:
 	Gamestate.active_tasks.append(task)
 	task.reparent($TopRightPanel/TaskList, false)
 	task.show()
-	var tween = get_tree().create_tween().chain()
+	var tween = get_tree().create_tween()
 	tween.tween_property(task, "modulate:a", 0, 0.0)
 	tween.tween_property(task, "modulate:a", 1, task_fade_speed)
 
 
-func _on_npc_turn_in(task: CheckBox) -> void:
+func _on_entity_turn_in(task: CheckBox) -> void:
 	# Can the task be turned in?
 	if Gamestate.current_energy > task.energy_cost:
 		# Spend energy
@@ -34,13 +34,13 @@ func _on_npc_turn_in(task: CheckBox) -> void:
 		Gamestate.active_tasks.erase(task)
 		task.button_pressed = true
 		task.disabled = true
-		var tween = get_tree().create_tween().chain()
+		var tween = get_tree().create_tween()
 		tween.tween_interval(0.5)
 		tween.tween_property(task, "modulate:a", 0, task_fade_speed)
 		tween.tween_callback(task.queue_free)
 
 
-func _on_npc_turn_in_warn(task: CheckBox) -> void:
+func _on_entity_turn_in_warn(task: CheckBox) -> void:
 	task_current_warning = task
 	if task.energy_cost > 0:
 		# If the task cost is > 0, flash the base and shorten the overlay.
@@ -59,7 +59,7 @@ func _on_npc_turn_in_warn(task: CheckBox) -> void:
 		$TopRightPanel/EnergyBarBase.self_modulate = Color.GREEN
 
 
-func _on_npc_turn_in_unwarn(task: CheckBox) -> void:
+func _on_entity_turn_in_unwarn(task: CheckBox) -> void:
 	if task_current_warning == task:
 		task_current_warning = null
 		$TopRightPanel/EnergyBarBase.value = Gamestate.current_energy

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Behavior" load_steps=2 format=3 uid="uid://uv0hrlw04aqb"]
 
-[ext_resource type="Script" uid="uid://bg13hbqhqin30" path="res://behavior.gd" id="1_kb71y"]
+[ext_resource type="Script" uid="uid://bg13hbqhqin30" path="res://elements/behavior.gd" id="1_kb71y"]
 
 [resource]
 resource_local_to_scene = true

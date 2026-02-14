@@ -12,7 +12,6 @@ func _on_npc_say(character: Area2D, dialogue: String) -> void:
 	reparent(character, false)
 	$Panel/Label.text = dialogue
 	$Panel.self_modulate = character.tint
-	#modulate.a = 1.0
 	modulate.a = 0.0
 	position.y = 0
 	show()

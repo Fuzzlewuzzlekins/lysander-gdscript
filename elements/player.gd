@@ -7,10 +7,18 @@ signal unhighlight(area: Area2D)
 @export var speed: float = 200
 #@export var anim_frame_rate: float = 10
 var closest_entity: Area2D = null
+var scene_bound_right: float = 10000
+const SCENE_MARGIN: float = 100.0
 
 
 func _ready() -> void:
-	pass
+	var background = get_parent().find_child("Background")
+	if background:
+		scene_bound_right = (background as ColorRect).size.x
+		print("Found Background of width: %f", scene_bound_right)
+	else:
+		print("Background not found")
+		
 
 
 func _process(delta: float) -> void:
@@ -27,6 +35,8 @@ func _process(delta: float) -> void:
 			position.x += speed * delta
 		else:
 			$AnimatedSprite2D.play("idle")
+	position.x = clampf(position.x, 0 + SCENE_MARGIN, scene_bound_right - SCENE_MARGIN)
+	
 	# If Player is idle (not walking), handle sit/stand
 	if (Input.is_action_just_pressed("sit_down") or Input.is_action_just_pressed("toggle_sit")) and current_anim == "idle":
 		$AnimatedSprite2D.play("sit")

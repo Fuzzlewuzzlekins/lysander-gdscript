@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwfxmpapwke63"]
 
-[ext_resource type="Script" uid="uid://bjyhhxc2ovsw6" path="res://task.gd" id="1_3qm7i"]
+[ext_resource type="Script" uid="uid://bjyhhxc2ovsw6" path="res://elements/task.gd" id="1_3qm7i"]
 
 [node name="Task" type="CheckBox"]
 theme_override_font_sizes/font_size = 18
