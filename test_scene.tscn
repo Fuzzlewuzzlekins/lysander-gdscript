@@ -1,24 +1,28 @@
-[gd_scene load_steps=11 format=3 uid="uid://bipuq40godms2"]
+[gd_scene load_steps=12 format=3 uid="uid://bipuq40godms2"]
 
 [ext_resource type="PackedScene" uid="uid://bfhhyigp58xxk" path="res://player.tscn" id="1_uhqqe"]
 [ext_resource type="PackedScene" uid="uid://b6rg1hfp63y7e" path="res://npc.tscn" id="2_ia1lp"]
 [ext_resource type="PackedScene" uid="uid://cwfxmpapwke63" path="res://task.tscn" id="2_sasra"]
 [ext_resource type="Script" uid="uid://bg13hbqhqin30" path="res://behavior.gd" id="3_2nij2"]
 [ext_resource type="PackedScene" uid="uid://bue6448e60wtb" path="res://hud.tscn" id="4_coq8p"]
+[ext_resource type="PackedScene" uid="uid://b36tyxmpgb1cq" path="res://dialogue_box.tscn" id="5_7cbxl"]
 
-[sub_resource type="Resource" id="Resource_2nij2"]
+[sub_resource type="Resource" id="Resource_7cbxl"]
+resource_local_to_scene = true
 resource_name = "Behavior"
 script = ExtResource("3_2nij2")
 animation = "idle"
 duration = 1.0
 
-[sub_resource type="Resource" id="Resource_7cbxl"]
+[sub_resource type="Resource" id="Resource_8pr8v"]
+resource_local_to_scene = true
 resource_name = "Behavior"
 script = ExtResource("3_2nij2")
 animation = "idle"
-duration = 2.0
+duration = 1.0
 
-[sub_resource type="Resource" id="Resource_8pr8v"]
+[sub_resource type="Resource" id="Resource_buypi"]
+resource_local_to_scene = true
 resource_name = "Behavior"
 script = ExtResource("3_2nij2")
 animation = "walk"
@@ -26,14 +30,16 @@ speed = -200.0
 flip_h = true
 duration = 1.0
 
-[sub_resource type="Resource" id="Resource_buypi"]
+[sub_resource type="Resource" id="Resource_njel3"]
+resource_local_to_scene = true
 resource_name = "Behavior"
 script = ExtResource("3_2nij2")
 animation = "idle"
 flip_h = true
-duration = 2.0
+duration = 1.0
 
-[sub_resource type="Resource" id="Resource_njel3"]
+[sub_resource type="Resource" id="Resource_vr1i5"]
+resource_local_to_scene = true
 resource_name = "Behavior"
 script = ExtResource("3_2nij2")
 animation = "walk"
@@ -48,10 +54,12 @@ offset_bottom = 800.0
 color = Color(0, 0, 0, 1)
 
 [node name="NPC" parent="." node_paths=PackedStringArray("target_player") instance=ExtResource("2_ia1lp")]
-modulate = Color(0.8627451, 0.6392157, 1, 1)
 position = Vector2(896, 400)
 target_player = NodePath("../Player")
-behavior = Array[Resource]([SubResource("Resource_2nij2")])
+tint = Color(1, 0.49019608, 1, 1)
+behaviors = Array[Resource]([SubResource("Resource_7cbxl")])
+idle_dialogue = Array[String](["Jim seems restless. Hope he's OK."])
+assign_dialogue = "Hey, have you talked to Jim lately?"
 
 [node name="Task" parent="NPC" node_paths=PackedStringArray("turn_in") instance=ExtResource("2_sasra")]
 text = "Go talk to the yellow guy"
@@ -59,10 +67,12 @@ energy_cost = 20
 turn_in = NodePath("../../NPC2")
 
 [node name="NPC2" parent="." node_paths=PackedStringArray("target_player") instance=ExtResource("2_ia1lp")]
-modulate = Color(1, 1, 0.5019608, 1)
 position = Vector2(416, 400)
 target_player = NodePath("../Player")
-behavior = Array[Resource]([SubResource("Resource_7cbxl"), SubResource("Resource_8pr8v"), SubResource("Resource_buypi"), SubResource("Resource_njel3")])
+tint = Color(1, 1, 0.22745098, 1)
+behaviors = Array[Resource]([SubResource("Resource_8pr8v"), SubResource("Resource_buypi"), SubResource("Resource_njel3"), SubResource("Resource_vr1i5")])
+idle_dialogue = Array[String](["I think better when I'm moving."])
+turn_in_dialogue = "Oh hey, thanks for checking in on me."
 
 [node name="Player" parent="." instance=ExtResource("1_uhqqe")]
 position = Vector2(640, 400)
@@ -73,9 +83,13 @@ limit_top = 0
 limit_right = 1664
 limit_bottom = 800
 
+[node name="DialogueBox" parent="." instance=ExtResource("5_7cbxl")]
+
 [node name="HUD" parent="." instance=ExtResource("4_coq8p")]
 
 [connection signal="assign" from="NPC" to="HUD" method="_on_npc_assign"]
+[connection signal="say" from="NPC" to="DialogueBox" method="_on_npc_say"]
+[connection signal="say" from="NPC2" to="DialogueBox" method="_on_npc_say"]
 [connection signal="turn_in" from="NPC2" to="HUD" method="_on_npc_turn_in"]
 [connection signal="turn_in_unwarn" from="NPC2" to="HUD" method="_on_npc_turn_in_unwarn"]
 [connection signal="turn_in_warn" from="NPC2" to="HUD" method="_on_npc_turn_in_warn"]

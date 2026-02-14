@@ -149,7 +149,7 @@ size = Vector2(64, 128)
 
 [node name="NPC" type="Area2D"]
 script = ExtResource("1_xxcha")
-behavior = Array[Resource]([ExtResource("2_ul7y6")])
+behaviors = Array[Resource]([ExtResource("2_ul7y6")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
