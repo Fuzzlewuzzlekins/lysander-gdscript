@@ -57,6 +57,7 @@ color = Color(0, 0, 0, 1)
 [node name="Exit" parent="." node_paths=PackedStringArray("target_player") instance=ExtResource("1_ah1fx")]
 position = Vector2(1472, 400)
 target_player = NodePath("../Player")
+lock_message = "Requires X"
 
 [node name="NPC" parent="." node_paths=PackedStringArray("target_player") instance=ExtResource("2_vrunm")]
 position = Vector2(896, 400)
@@ -66,10 +67,11 @@ behaviors = Array[Resource]([SubResource("Resource_ah1fx")])
 idle_dialogue = Array[String](["Jim seems restless. Hope he's OK."])
 assign_dialogue = "Hey, have you talked to Jim lately?"
 
-[node name="Task" parent="NPC" node_paths=PackedStringArray("turn_in") instance=ExtResource("4_vehgu")]
+[node name="Task" parent="NPC" node_paths=PackedStringArray("turn_in", "unlocks") instance=ExtResource("4_vehgu")]
 text = "Go talk to the yellow guy"
 energy_cost = 20
 turn_in = NodePath("../../NPC2")
+unlocks = NodePath("../../Exit")
 
 [node name="NPC2" parent="." node_paths=PackedStringArray("target_player") instance=ExtResource("2_vrunm")]
 position = Vector2(416, 400)
@@ -101,6 +103,7 @@ limit_bottom = 800
 [connection signal="turn_in" from="NPC2" to="HUD" method="_on_entity_turn_in"]
 [connection signal="turn_in_unwarn" from="NPC2" to="HUD" method="_on_entity_turn_in_unwarn"]
 [connection signal="turn_in_warn" from="NPC2" to="HUD" method="_on_entity_turn_in_warn"]
+[connection signal="unlock" from="NPC2" to="Exit" method="_on_entity_unlock"]
 [connection signal="highlight" from="Player" to="Exit" method="_on_player_highlight"]
 [connection signal="highlight" from="Player" to="NPC" method="_on_player_highlight"]
 [connection signal="highlight" from="Player" to="NPC2" method="_on_player_highlight"]

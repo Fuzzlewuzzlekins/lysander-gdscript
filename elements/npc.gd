@@ -4,6 +4,7 @@ signal assign(task: CheckBox)
 signal turn_in(task: CheckBox)
 signal turn_in_warn(task: CheckBox)
 signal turn_in_unwarn(task: CheckBox)
+signal unlock(exit: Area2D)
 signal say(character: Area2D, dialogue: String)
 
 @export var target_player: Area2D
@@ -60,6 +61,8 @@ func _on_player_interact(area: Area2D) -> void:
 			var task = Gamestate.active_tasks.get(i)
 			if task.turn_in == self:
 				turn_in.emit(task)
+				if task.unlocks:
+					unlock.emit(task.unlocks)
 				if turn_in_dialogue:
 					say.emit(self, turn_in_dialogue)
 				return

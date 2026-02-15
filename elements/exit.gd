@@ -9,7 +9,7 @@ signal turn_in_unwarn(task: CheckBox)
 @export var dullness: float = 0.8
 @export var next_scene: PackedScene
 @export var next_scene_hint: String = "Leave"
-@export var lock_messsage: String
+@export var lock_message: String
 #var assignment: CheckBox
 
 
@@ -25,14 +25,14 @@ func _on_player_interact(area: Area2D) -> void:
 			if task.turn_in == self:
 				turn_in.emit(task)
 		# If not locked, let player change scene
-		if !lock_messsage:
+		if !lock_message:
 			get_tree().change_scene_to_packed(next_scene)
 
 
 func _on_player_highlight(area: Area2D) -> void:
 	if self == area:
-		if lock_messsage:
-			$Label.text = lock_messsage
+		if lock_message:
+			$Label.text = lock_message
 		else:
 			$Label.text = next_scene_hint
 		var tween = get_tree().create_tween()
@@ -55,3 +55,8 @@ func _on_player_unhighlight(area: Area2D) -> void:
 			var task = Gamestate.active_tasks.get(i)
 			if task.turn_in == self:
 				turn_in_unwarn.emit(task)
+
+
+func _on_entity_unlock(exit: Area2D) -> void:
+	if self == exit:
+		lock_message = ""
