@@ -9,6 +9,7 @@ signal turn_in_unwarn(task: CheckBox)
 @export var dullness: float = 0.8
 @export var next_scene: PackedScene
 @export var next_scene_hint: String = "Leave"
+@export var prerequisites: Array[CheckBox]
 @export var lock_message: String
 #var assignment: CheckBox
 
@@ -31,7 +32,7 @@ func _on_player_interact(area: Area2D) -> void:
 
 func _on_player_highlight(area: Area2D) -> void:
 	if self == area:
-		if lock_message:
+		if prerequisites.size() > 0 or lock_message:
 			$Label.text = lock_message
 		else:
 			$Label.text = next_scene_hint
@@ -57,6 +58,8 @@ func _on_player_unhighlight(area: Area2D) -> void:
 				turn_in_unwarn.emit(task)
 
 
-func _on_entity_unlock(exit: Area2D) -> void:
-	if self == exit:
-		lock_message = ""
+func _on_entity_turn_in(task: CheckBox) -> void:
+	if prerequisites.has(task):
+		prerequisites.erase(task)
+		if prerequisites.size() == 0:
+			lock_message = ""

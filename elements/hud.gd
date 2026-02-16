@@ -19,25 +19,23 @@ func _on_entity_assign(task: CheckBox) -> void:
 
 
 func _on_entity_turn_in(task: CheckBox) -> void:
-	# Can the task be turned in?
-	if Gamestate.current_energy > task.energy_cost:
-		# Spend energy
-		Gamestate.current_energy -= task.energy_cost
-		$TopRightPanel/EnergyBarBase.value = Gamestate.current_energy
-		$TopRightPanel/EnergyBarBase.self_modulate = Color.WHITE
-		$TopRightPanel/EnergyBarBase/EnergyBarOverlay.value = Gamestate.current_energy
-		task_current_warning = null
-		if task_warn_tween:
-			task_warn_tween.kill()
-			task_warn_tween = null
-		# Clear task
-		Gamestate.active_tasks.erase(task)
-		task.button_pressed = true
-		task.disabled = true
-		var tween = get_tree().create_tween()
-		tween.tween_interval(0.5)
-		tween.tween_property(task, "modulate:a", 0, task_fade_speed)
-		tween.tween_callback(task.queue_free)
+	# Spend energy
+	Gamestate.current_energy -= task.energy_cost
+	$TopRightPanel/EnergyBarBase.value = Gamestate.current_energy
+	$TopRightPanel/EnergyBarBase.self_modulate = Color.WHITE
+	$TopRightPanel/EnergyBarBase/EnergyBarOverlay.value = Gamestate.current_energy
+	task_current_warning = null
+	if task_warn_tween:
+		task_warn_tween.kill()
+		task_warn_tween = null
+	# Clear task
+	Gamestate.active_tasks.erase(task)
+	task.button_pressed = true
+	task.disabled = true
+	var tween = get_tree().create_tween()
+	tween.tween_interval(0.5)
+	tween.tween_property(task, "modulate:a", 0, task_fade_speed)
+	tween.tween_callback(task.queue_free)
 
 
 func _on_entity_turn_in_warn(task: CheckBox) -> void:

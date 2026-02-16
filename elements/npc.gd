@@ -4,7 +4,6 @@ signal assign(task: CheckBox)
 signal turn_in(task: CheckBox)
 signal turn_in_warn(task: CheckBox)
 signal turn_in_unwarn(task: CheckBox)
-signal unlock(exit: Area2D)
 signal say(character: Area2D, dialogue: String)
 
 @export var target_player: Area2D
@@ -24,9 +23,6 @@ func _ready() -> void:
 	$AnimatedSprite2D.modulate = tint
 	# Dull sprite slightly by default
 	$AnimatedSprite2D.modulate.a = dullness
-	# Look for the Player in the scene
-	if !target_player:
-		target_player = get_tree().get_root().find_child("Player")
 	# If I have a Task as a child, manage it
 	assignment = get_node_or_null("Task")
 	if assignment != null:
@@ -50,7 +46,7 @@ func _process(delta: float) -> void:
 
 
 func _on_player_interact(area: Area2D) -> void:
-	if self == area:
+	if self == area and target_player:
 		## Turn to face the player. Only useful if dialogue pauses behavior.
 		#if global_position.x > target_player.global_position.x:
 			#$AnimatedSprite2D.flip_h = true
@@ -59,10 +55,8 @@ func _on_player_interact(area: Area2D) -> void:
 		# Check if I am a turn-in point for any tasks
 		for i in range(Gamestate.active_tasks.size()):
 			var task = Gamestate.active_tasks.get(i)
-			if task.turn_in == self:
+			if task.turn_in == self and Gamestate.current_energy > task.energy_cost:
 				turn_in.emit(task)
-				if task.unlocks:
-					unlock.emit(task.unlocks)
 				if turn_in_dialogue:
 					say.emit(self, turn_in_dialogue)
 				return
@@ -82,7 +76,7 @@ func _on_player_interact(area: Area2D) -> void:
 
 
 func _on_player_highlight(area: Area2D) -> void:
-	if self == area:
+	if self == area and target_player:
 		var tween = get_tree().create_tween()
 		tween.tween_property($AnimatedSprite2D, "modulate:a", 1.0, 0.2)
 		# Check if I am a turn-in point for any tasks
@@ -93,7 +87,7 @@ func _on_player_highlight(area: Area2D) -> void:
 
 
 func _on_player_unhighlight(area: Area2D) -> void:
-	if self == area:
+	if self == area and target_player:
 		var tween = get_tree().create_tween()
 		tween.tween_property($AnimatedSprite2D, "modulate:a", dullness, 0.2)
 		# Check if I am a turn-in point for any tasks

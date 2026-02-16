@@ -54,9 +54,10 @@ offset_right = 1664.0
 offset_bottom = 800.0
 color = Color(0, 0, 0, 1)
 
-[node name="Exit" parent="." node_paths=PackedStringArray("target_player") instance=ExtResource("1_ah1fx")]
+[node name="Exit" parent="." node_paths=PackedStringArray("target_player", "prerequisites") instance=ExtResource("1_ah1fx")]
 position = Vector2(1472, 400)
 target_player = NodePath("../Player")
+prerequisites = [NodePath("../NPC/Task")]
 lock_message = "Requires X"
 
 [node name="NPC" parent="." node_paths=PackedStringArray("target_player") instance=ExtResource("2_vrunm")]
@@ -67,11 +68,12 @@ behaviors = Array[Resource]([SubResource("Resource_ah1fx")])
 idle_dialogue = Array[String](["Jim seems restless. Hope he's OK."])
 assign_dialogue = "Hey, have you talked to Jim lately?"
 
-[node name="Task" parent="NPC" node_paths=PackedStringArray("turn_in", "unlocks") instance=ExtResource("4_vehgu")]
-text = "Go talk to the yellow guy"
+[node name="Task" parent="NPC" node_paths=PackedStringArray("turn_in") instance=ExtResource("4_vehgu")]
 energy_cost = 20
 turn_in = NodePath("../../NPC2")
-unlocks = NodePath("../../Exit")
+
+[node name="RichTextLabel" parent="NPC/Task" index="0"]
+text = "Go talk to [b][color=yellow]Jim[/color][/b]"
 
 [node name="NPC2" parent="." node_paths=PackedStringArray("target_player") instance=ExtResource("2_vrunm")]
 position = Vector2(416, 400)
@@ -100,10 +102,10 @@ limit_bottom = 800
 [connection signal="assign" from="NPC" to="HUD" method="_on_entity_assign"]
 [connection signal="say" from="NPC" to="DialogueBox" method="_on_npc_say"]
 [connection signal="say" from="NPC2" to="DialogueBox" method="_on_npc_say"]
+[connection signal="turn_in" from="NPC2" to="Exit" method="_on_entity_turn_in"]
 [connection signal="turn_in" from="NPC2" to="HUD" method="_on_entity_turn_in"]
 [connection signal="turn_in_unwarn" from="NPC2" to="HUD" method="_on_entity_turn_in_unwarn"]
 [connection signal="turn_in_warn" from="NPC2" to="HUD" method="_on_entity_turn_in_warn"]
-[connection signal="unlock" from="NPC2" to="Exit" method="_on_entity_unlock"]
 [connection signal="highlight" from="Player" to="Exit" method="_on_player_highlight"]
 [connection signal="highlight" from="Player" to="NPC" method="_on_player_highlight"]
 [connection signal="highlight" from="Player" to="NPC2" method="_on_player_highlight"]
@@ -113,3 +115,5 @@ limit_bottom = 800
 [connection signal="unhighlight" from="Player" to="Exit" method="_on_player_unhighlight"]
 [connection signal="unhighlight" from="Player" to="NPC" method="_on_player_unhighlight"]
 [connection signal="unhighlight" from="Player" to="NPC2" method="_on_player_unhighlight"]
+
+[editable path="NPC/Task"]
