@@ -12,7 +12,8 @@ const SCENE_MARGIN: float = 100.0
 
 
 func _ready() -> void:
-	var background = get_parent().find_child("Background")
+	#var background = get_parent().find_child("Background")
+	var background = get_tree().current_scene.find_child("Background")
 	if background:
 		scene_bound_right = (background as ColorRect).size.x
 		print("Found Background of width: %f", scene_bound_right)

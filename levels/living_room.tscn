@@ -1,0 +1,249 @@
+[gd_scene load_steps=24 format=3 uid="uid://d0dn1m0mgpbha"]
+
+[ext_resource type="PackedScene" uid="uid://cds4k72xvmuhp" path="res://elements/exit.tscn" id="1_alyfl"]
+[ext_resource type="PackedScene" uid="uid://bipuq40godms2" path="res://levels/test_scene.tscn" id="2_sifur"]
+[ext_resource type="Texture2D" uid="uid://mfliidafjdvl" path="res://assets/door.png" id="3_iyfjq"]
+[ext_resource type="PackedScene" uid="uid://bfhhyigp58xxk" path="res://elements/player.tscn" id="4_qrlfb"]
+[ext_resource type="Texture2D" uid="uid://cw0xjeni01nll" path="res://assets/lysander_idle_temp.png" id="5_wci2e"]
+[ext_resource type="Texture2D" uid="uid://hnvqpbvcaf7b" path="res://assets/dining_chair_2.png" id="6_fx3kc"]
+[ext_resource type="Texture2D" uid="uid://op3pg6kud00v" path="res://assets/dad_idle_temp.png" id="6_iyfjq"]
+[ext_resource type="Texture2D" uid="uid://cbabk8riuns6g" path="res://assets/dining_table_back.png" id="7_ao43s"]
+[ext_resource type="Texture2D" uid="uid://d3buu1yodqn1u" path="res://assets/dining_chair_1.png" id="8_copq6"]
+[ext_resource type="Texture2D" uid="uid://xbkiajmfcgav" path="res://assets/dining_table.png" id="9_cuwug"]
+[ext_resource type="Texture2D" uid="uid://b44742yx7v4lj" path="res://assets/end_table.png" id="10_0em5k"]
+[ext_resource type="PackedScene" uid="uid://b6rg1hfp63y7e" path="res://elements/npc.tscn" id="11_4jr8h"]
+[ext_resource type="Script" uid="uid://bg13hbqhqin30" path="res://elements/behavior.gd" id="12_brvyb"]
+[ext_resource type="Texture2D" uid="uid://o2jlvaakw1na" path="res://assets/mom_idle_temp.png" id="12_qrlfb"]
+[ext_resource type="Texture2D" uid="uid://c3vlh571vg7kh" path="res://assets/emmeline_idle_temp.png" id="13_b7rwi"]
+[ext_resource type="PackedScene" uid="uid://b36tyxmpgb1cq" path="res://elements/dialogue_box.tscn" id="16_wci2e"]
+[ext_resource type="PackedScene" uid="uid://cwfxmpapwke63" path="res://elements/task.tscn" id="17_ao43s"]
+[ext_resource type="PackedScene" uid="uid://bue6448e60wtb" path="res://elements/hud.tscn" id="17_fx3kc"]
+
+[sub_resource type="Gradient" id="Gradient_ao43s"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_copq6"]
+gradient = SubResource("Gradient_ao43s")
+
+[sub_resource type="Resource" id="Resource_ao43s"]
+resource_local_to_scene = true
+resource_name = "Behavior"
+script = ExtResource("12_brvyb")
+animation = "idle"
+duration = 1.0
+
+[sub_resource type="Resource" id="Resource_copq6"]
+resource_local_to_scene = true
+resource_name = "Behavior"
+script = ExtResource("12_brvyb")
+animation = "idle"
+duration = 1.0
+
+[sub_resource type="Resource" id="Resource_cuwug"]
+resource_local_to_scene = true
+resource_name = "Behavior"
+script = ExtResource("12_brvyb")
+animation = "idle"
+duration = 1.0
+
+[node name="LivingRoom" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1344.0
+offset_bottom = 800.0
+color = Color(0, 0, 0, 1)
+
+[node name="SceneElements" type="Node" parent="."]
+
+[node name="Exit" parent="SceneElements" node_paths=PackedStringArray("target_player") instance=ExtResource("1_alyfl")]
+position = Vector2(856, 424)
+target_player = NodePath("../Player")
+next_scene_hint = "Bedroom"
+metadata/_edit_group_ = true
+
+[node name="Panel" parent="SceneElements/Exit" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="SceneElements/Exit" index="2"]
+position = Vector2(0, 8)
+
+[node name="Label" parent="SceneElements/Exit" index="3"]
+offset_top = -176.0
+offset_bottom = -153.0
+
+[node name="Door" type="Sprite2D" parent="SceneElements/Exit"]
+texture = ExtResource("3_iyfjq")
+
+[node name="Exit2" parent="SceneElements" node_paths=PackedStringArray("target_player", "prerequisites") instance=ExtResource("1_alyfl")]
+position = Vector2(1272, 448)
+target_player = NodePath("../Player")
+dullness = 0.1
+next_scene = ExtResource("2_sifur")
+next_scene_hint = "Leave for school"
+prerequisites = [NodePath("../NPCMom/Task")]
+lock_message = "Need car keys"
+
+[node name="Sprite2D" parent="SceneElements/Exit2" index="0"]
+visible = true
+position = Vector2(63.999985, -16.000008)
+scale = Vector2(1.0624996, 288.00003)
+texture = SubResource("GradientTexture1D_copq6")
+
+[node name="Panel" parent="SceneElements/Exit2" index="1"]
+visible = false
+
+[node name="Label" parent="SceneElements/Exit2" index="3"]
+offset_left = -56.0
+offset_top = -184.0
+offset_right = 56.0
+offset_bottom = -161.0
+horizontal_alignment = 2
+
+[node name="NPCDad" parent="SceneElements" node_paths=PackedStringArray("target_player") instance=ExtResource("11_4jr8h")]
+position = Vector2(408, 448)
+target_player = NodePath("../Player")
+tint = Color(0.39607844, 1, 0.56078434, 1)
+behaviors = Array[Resource]([SubResource("Resource_ao43s")])
+idle_dialogue = Array[String](["I'm taking Emma to school today."])
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" parent="SceneElements/NPCDad" index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="SceneElements/NPCDad" index="1"]
+position = Vector2(0, 4)
+
+[node name="DadIdleTemp" type="Sprite2D" parent="SceneElements/NPCDad"]
+modulate = Color(0.39607844, 1, 0.56078434, 1)
+texture = ExtResource("6_iyfjq")
+
+[node name="DiningChair2" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
+position = Vector2(496, 496)
+texture = ExtResource("6_fx3kc")
+
+[node name="DiningTableBack" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
+position = Vector2(504, 512)
+texture = ExtResource("7_ao43s")
+
+[node name="DiningChair1" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
+position = Vector2(376, 496)
+texture = ExtResource("8_copq6")
+
+[node name="DiningChair3" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
+position = Vector2(632, 496)
+texture = ExtResource("8_copq6")
+flip_h = true
+
+[node name="DiningTable" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
+position = Vector2(504, 512)
+texture = ExtResource("9_cuwug")
+
+[node name="NPCEmma" parent="SceneElements" node_paths=PackedStringArray("target_player") instance=ExtResource("11_4jr8h")]
+position = Vector2(296, 460)
+target_player = NodePath("../Player")
+tint = Color(1, 0.5294118, 0.81960785, 1)
+behaviors = Array[Resource]([SubResource("Resource_copq6")])
+idle_dialogue = Array[String](["Dad, we're gonna be late!"])
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" parent="SceneElements/NPCEmma" index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="SceneElements/NPCEmma" index="1"]
+position = Vector2(0, 4)
+
+[node name="EmmelineIdleTemp" type="Sprite2D" parent="SceneElements/NPCEmma"]
+modulate = Color(1, 0.5294118, 0.81960785, 1)
+texture = ExtResource("13_b7rwi")
+
+[node name="NPCMom" parent="SceneElements" node_paths=PackedStringArray("target_player") instance=ExtResource("11_4jr8h")]
+position = Vector2(1080, 456)
+target_player = NodePath("../Player")
+tint = Color(1, 0.8980392, 0.34901962, 1)
+behaviors = Array[Resource]([SubResource("Resource_cuwug")])
+idle_dialogue = Array[String](["Have a great day at school, sweetie!"])
+assign_dialogue = "Have a great... ah, I have your keys, don't ?"
+turn_in_dialogue = "Here you are! Drive safe!"
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" parent="SceneElements/NPCMom" index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="SceneElements/NPCMom" index="1"]
+position = Vector2(0, 4)
+
+[node name="MomIdleTemp" type="Sprite2D" parent="SceneElements/NPCMom"]
+modulate = Color(1, 0.8980392, 0.34901962, 1)
+texture = ExtResource("12_qrlfb")
+flip_h = true
+
+[node name="Task" parent="SceneElements/NPCMom" node_paths=PackedStringArray("turn_in") instance=ExtResource("17_ao43s")]
+offset_left = 232.0
+offset_top = -8.0
+offset_right = 488.0
+offset_bottom = 24.0
+time_cost = 0
+energy_cost = 0
+turn_in = NodePath("..")
+
+[node name="Label" parent="SceneElements/NPCMom/Task" index="0"]
+text = "Get car keys from [color=yellow]Mom[/color]"
+
+[node name="EndTable" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
+position = Vector2(72, 480)
+texture = ExtResource("10_0em5k")
+
+[node name="Player" parent="SceneElements" instance=ExtResource("4_qrlfb")]
+position = Vector2(856, 456)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" parent="SceneElements/Player" index="0"]
+visible = false
+
+[node name="LysanderIdleTemp" type="Sprite2D" parent="SceneElements/Player"]
+texture = ExtResource("5_wci2e")
+
+[node name="Camera2D" type="Camera2D" parent="SceneElements/Player"]
+limit_left = 0
+limit_top = 0
+limit_right = 1344
+limit_bottom = 800
+
+[node name="DialogueBox" parent="." instance=ExtResource("16_wci2e")]
+
+[node name="HUD" parent="." instance=ExtResource("17_fx3kc")]
+
+[connection signal="say" from="SceneElements/NPCDad" to="DialogueBox" method="_on_npc_say"]
+[connection signal="turn_in" from="SceneElements/NPCDad" to="HUD" method="_on_entity_turn_in"]
+[connection signal="say" from="SceneElements/NPCEmma" to="DialogueBox" method="_on_npc_say"]
+[connection signal="assign" from="SceneElements/NPCMom" to="HUD" method="_on_entity_assign"]
+[connection signal="say" from="SceneElements/NPCMom" to="DialogueBox" method="_on_npc_say"]
+[connection signal="turn_in" from="SceneElements/NPCMom" to="SceneElements/Exit2" method="_on_entity_turn_in"]
+[connection signal="turn_in" from="SceneElements/NPCMom" to="HUD" method="_on_entity_turn_in"]
+[connection signal="turn_in_unwarn" from="SceneElements/NPCMom" to="HUD" method="_on_entity_turn_in_unwarn"]
+[connection signal="turn_in_warn" from="SceneElements/NPCMom" to="HUD" method="_on_entity_turn_in_warn"]
+[connection signal="highlight" from="SceneElements/Player" to="SceneElements/Exit2" method="_on_player_highlight"]
+[connection signal="highlight" from="SceneElements/Player" to="SceneElements/NPCDad" method="_on_player_highlight"]
+[connection signal="highlight" from="SceneElements/Player" to="SceneElements/NPCEmma" method="_on_player_highlight"]
+[connection signal="highlight" from="SceneElements/Player" to="SceneElements/NPCMom" method="_on_player_highlight"]
+[connection signal="interact" from="SceneElements/Player" to="SceneElements/Exit2" method="_on_player_interact"]
+[connection signal="interact" from="SceneElements/Player" to="SceneElements/NPCDad" method="_on_player_interact"]
+[connection signal="interact" from="SceneElements/Player" to="SceneElements/NPCEmma" method="_on_player_interact"]
+[connection signal="interact" from="SceneElements/Player" to="SceneElements/NPCMom" method="_on_player_interact"]
+[connection signal="unhighlight" from="SceneElements/Player" to="SceneElements/Exit2" method="_on_player_unhighlight"]
+[connection signal="unhighlight" from="SceneElements/Player" to="SceneElements/NPCDad" method="_on_player_unhighlight"]
+[connection signal="unhighlight" from="SceneElements/Player" to="SceneElements/NPCEmma" method="_on_player_unhighlight"]
+[connection signal="unhighlight" from="SceneElements/Player" to="SceneElements/NPCMom" method="_on_player_unhighlight"]
+
+[editable path="SceneElements/Exit"]
+[editable path="SceneElements/Exit2"]
+[editable path="SceneElements/NPCDad"]
+[editable path="SceneElements/NPCEmma"]
+[editable path="SceneElements/NPCMom"]
+[editable path="SceneElements/NPCMom/Task"]
+[editable path="SceneElements/Player"]

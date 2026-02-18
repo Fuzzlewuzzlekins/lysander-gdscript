@@ -1,0 +1,143 @@
+[gd_scene load_steps=18 format=3 uid="uid://cckhdrlnfx5c7"]
+
+[ext_resource type="PackedScene" uid="uid://cds4k72xvmuhp" path="res://elements/exit.tscn" id="1_y2yle"]
+[ext_resource type="PackedScene" uid="uid://d0dn1m0mgpbha" path="res://levels/living_room.tscn" id="2_y2yle"]
+[ext_resource type="Texture2D" uid="uid://mfliidafjdvl" path="res://assets/door.png" id="3_kajri"]
+[ext_resource type="Texture2D" uid="uid://dvsv8dpmihmei" path="res://assets/mirror.png" id="4_m4o02"]
+[ext_resource type="Texture2D" uid="uid://c71hgk2afj1va" path="res://assets/window_morning.png" id="5_7dtq1"]
+[ext_resource type="Texture2D" uid="uid://cpyfimd8kc7ja" path="res://assets/dresser.png" id="6_7cjcd"]
+[ext_resource type="Texture2D" uid="uid://nccosl28nyxu" path="res://assets/bed_back.png" id="7_nl1ow"]
+[ext_resource type="Texture2D" uid="uid://bm0lamrqlngmj" path="res://assets/bed.png" id="8_eaqy0"]
+[ext_resource type="Texture2D" uid="uid://rihcyducdja0" path="res://assets/plush.png" id="9_cihrr"]
+[ext_resource type="Texture2D" uid="uid://b44742yx7v4lj" path="res://assets/end_table.png" id="10_feehn"]
+[ext_resource type="Texture2D" uid="uid://bq4r6gh84io6e" path="res://assets/alarm.png" id="11_p4vkl"]
+[ext_resource type="PackedScene" uid="uid://bfhhyigp58xxk" path="res://elements/player.tscn" id="12_mkqlh"]
+[ext_resource type="Texture2D" uid="uid://cw0xjeni01nll" path="res://assets/lysander_idle_temp.png" id="13_lwrpj"]
+[ext_resource type="Texture2D" uid="uid://b2ob5eq03tysd" path="res://assets/desk.png" id="14_sofmq"]
+[ext_resource type="Texture2D" uid="uid://dlny5mgi7r2oh" path="res://assets/desk_chair.png" id="15_1f4of"]
+[ext_resource type="PackedScene" uid="uid://b36tyxmpgb1cq" path="res://elements/dialogue_box.tscn" id="16_ipsgu"]
+[ext_resource type="PackedScene" uid="uid://bue6448e60wtb" path="res://elements/hud.tscn" id="17_pekuo"]
+
+[node name="Bedroom" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1344.0
+offset_bottom = 800.0
+color = Color(0, 0, 0, 1)
+
+[node name="SceneElements" type="Node" parent="."]
+
+[node name="Exit" parent="SceneElements" node_paths=PackedStringArray("target_player") instance=ExtResource("1_y2yle")]
+position = Vector2(376, 424)
+target_player = NodePath("../Player")
+next_scene = ExtResource("2_y2yle")
+next_scene_hint = "Living room"
+metadata/_edit_group_ = true
+
+[node name="Panel" parent="SceneElements/Exit" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="SceneElements/Exit" index="2"]
+position = Vector2(0, 8)
+
+[node name="Label" parent="SceneElements/Exit" index="3"]
+offset_top = -176.0
+offset_bottom = -153.0
+
+[node name="Door" type="Sprite2D" parent="SceneElements/Exit"]
+texture = ExtResource("3_kajri")
+
+[node name="Mirror" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
+position = Vector2(672, 304)
+texture = ExtResource("4_m4o02")
+
+[node name="WindowMorning" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
+position = Vector2(1048, 264)
+texture = ExtResource("5_7dtq1")
+
+[node name="Dresser" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
+position = Vector2(672, 488)
+texture = ExtResource("6_7cjcd")
+
+[node name="BedBack" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.73333335, 0.73333335, 0.73333335, 1)
+position = Vector2(1008, 488)
+texture = ExtResource("7_nl1ow")
+
+[node name="Bed" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
+position = Vector2(1008, 488)
+texture = ExtResource("8_eaqy0")
+
+[node name="Plush" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
+position = Vector2(904, 448)
+texture = ExtResource("9_cihrr")
+
+[node name="EndTable" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
+position = Vector2(1264, 480)
+texture = ExtResource("10_feehn")
+
+[node name="Alarm" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
+position = Vector2(1248, 480)
+texture = ExtResource("11_p4vkl")
+
+[node name="Label" type="Label" parent="SceneElements/Alarm"]
+modulate = Color(1, 0.735357, 0.735357, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.5
+offset_top = -27.5
+offset_right = -11.5
+offset_bottom = -4.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "07:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player" parent="SceneElements" instance=ExtResource("12_mkqlh")]
+position = Vector2(1120, 456)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" parent="SceneElements/Player" index="0"]
+visible = false
+
+[node name="LysanderIdleTemp" type="Sprite2D" parent="SceneElements/Player"]
+texture = ExtResource("13_lwrpj")
+
+[node name="Camera2D" type="Camera2D" parent="SceneElements/Player"]
+limit_left = 0
+limit_top = 0
+limit_right = 1344
+limit_bottom = 800
+
+[node name="Desk" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
+position = Vector2(64, 472)
+texture = ExtResource("14_sofmq")
+
+[node name="DeskChair" type="Sprite2D" parent="SceneElements"]
+modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
+position = Vector2(176, 496)
+texture = ExtResource("15_1f4of")
+
+[node name="DialogueBox" parent="." instance=ExtResource("16_ipsgu")]
+
+[node name="HUD" parent="." instance=ExtResource("17_pekuo")]
+
+[connection signal="highlight" from="SceneElements/Player" to="SceneElements/Exit" method="_on_player_highlight"]
+[connection signal="interact" from="SceneElements/Player" to="SceneElements/Exit" method="_on_player_interact"]
+[connection signal="unhighlight" from="SceneElements/Player" to="SceneElements/Exit" method="_on_player_unhighlight"]
+
+[editable path="SceneElements/Exit"]
+[editable path="SceneElements/Player"]

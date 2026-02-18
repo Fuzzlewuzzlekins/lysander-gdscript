@@ -15,6 +15,7 @@ signal turn_in_unwarn(task: CheckBox)
 
 
 func _ready() -> void:
+	modulate.a = dullness
 	$Label.modulate.a = 0.0
 
 
@@ -26,7 +27,7 @@ func _on_player_interact(area: Area2D) -> void:
 			if task.turn_in == self:
 				turn_in.emit(task)
 		# If not locked, let player change scene
-		if !lock_message:
+		if prerequisites.size() == 0 and !lock_message:
 			get_tree().change_scene_to_packed(next_scene)
 
 

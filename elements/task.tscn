@@ -3,17 +3,17 @@
 [ext_resource type="Script" uid="uid://bjyhhxc2ovsw6" path="res://elements/task.gd" id="1_3qm7i"]
 
 [node name="Task" type="CheckBox"]
-offset_right = 256.0
+offset_right = 288.0
 offset_bottom = 32.0
 theme_override_font_sizes/font_size = 18
 button_mask = 0
 expand_icon = true
 script = ExtResource("1_3qm7i")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Label" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 24.0
-offset_right = 256.0
+offset_right = 288.0
 offset_bottom = 32.0
 theme_override_font_sizes/normal_font_size = 18
 theme_override_font_sizes/bold_font_size = 18

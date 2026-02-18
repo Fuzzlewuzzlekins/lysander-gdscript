@@ -19,15 +19,16 @@ func _on_entity_assign(task: CheckBox) -> void:
 
 
 func _on_entity_turn_in(task: CheckBox) -> void:
-	# Spend energy
-	Gamestate.current_energy -= task.energy_cost
-	$TopRightPanel/EnergyBarBase.value = Gamestate.current_energy
-	$TopRightPanel/EnergyBarBase.self_modulate = Color.WHITE
-	$TopRightPanel/EnergyBarBase/EnergyBarOverlay.value = Gamestate.current_energy
+	# Spend energy, kill warn animation
 	task_current_warning = null
 	if task_warn_tween:
 		task_warn_tween.kill()
 		task_warn_tween = null
+	Gamestate.current_energy -= task.energy_cost
+	$TopRightPanel/EnergyBarBase.value = Gamestate.current_energy
+	$TopRightPanel/EnergyBarBase.self_modulate = Color.WHITE
+	$TopRightPanel/EnergyBarBase/EnergyBarOverlay.value = Gamestate.current_energy
+	task.modulate.a = 1.0
 	# Clear task
 	Gamestate.active_tasks.erase(task)
 	task.button_pressed = true
@@ -45,7 +46,9 @@ func _on_entity_turn_in_warn(task: CheckBox) -> void:
 		$TopRightPanel/EnergyBarBase/EnergyBarOverlay.value -= task.energy_cost
 		task_warn_tween = get_tree().create_tween().set_loops()
 		task_warn_tween.tween_property($TopRightPanel/EnergyBarBase, "self_modulate:a", 0.0, 0.5)
+		task_warn_tween.parallel().tween_property(task, "modulate:a", 0.5, 0.5)
 		task_warn_tween.tween_property($TopRightPanel/EnergyBarBase, "self_modulate:a", 1.0, 0.5)
+		task_warn_tween.parallel().tween_property(task, "modulate:a", 1.0, 0.5)
 		if task.energy_cost > Gamestate.current_energy:
 			$TopRightPanel/EnergyBarBase.self_modulate = Color.RED
 	elif task.energy_cost < 0:
@@ -53,16 +56,19 @@ func _on_entity_turn_in_warn(task: CheckBox) -> void:
 		$TopRightPanel/EnergyBarBase.value -= task.energy_cost
 		task_warn_tween = get_tree().create_tween().set_loops()
 		task_warn_tween.tween_property($TopRightPanel/EnergyBarBase, "self_modulate:a", 0.0, 0.5)
+		task_warn_tween.parallel().tween_property(task, "modulate:a", 0.5, 0.5)
 		task_warn_tween.tween_property($TopRightPanel/EnergyBarBase, "self_modulate:a", 1.0, 0.5)
+		task_warn_tween.parallel().tween_property(task, "modulate:a", 1.0, 0.5)
 		$TopRightPanel/EnergyBarBase.self_modulate = Color.GREEN
 
 
 func _on_entity_turn_in_unwarn(task: CheckBox) -> void:
 	if task_current_warning == task:
 		task_current_warning = null
-		$TopRightPanel/EnergyBarBase.value = Gamestate.current_energy
-		$TopRightPanel/EnergyBarBase.self_modulate = Color.WHITE
-		$TopRightPanel/EnergyBarBase/EnergyBarOverlay.value = Gamestate.current_energy
 		if task_warn_tween:
 			task_warn_tween.kill()
 			task_warn_tween = null
+		$TopRightPanel/EnergyBarBase.value = Gamestate.current_energy
+		$TopRightPanel/EnergyBarBase.self_modulate = Color.WHITE
+		$TopRightPanel/EnergyBarBase/EnergyBarOverlay.value = Gamestate.current_energy
+		task.modulate.a = 1.0

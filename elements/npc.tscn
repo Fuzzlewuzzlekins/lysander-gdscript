@@ -145,7 +145,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
-size = Vector2(64, 128)
+size = Vector2(96, 248)
 
 [node name="NPC" type="Area2D"]
 script = ExtResource("1_xxcha")

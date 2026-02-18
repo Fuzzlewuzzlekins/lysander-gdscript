@@ -72,7 +72,7 @@ assign_dialogue = "Hey, have you talked to Jim lately?"
 energy_cost = 20
 turn_in = NodePath("../../NPC2")
 
-[node name="RichTextLabel" parent="NPC/Task" index="0"]
+[node name="Label" parent="NPC/Task" index="0"]
 text = "Go talk to [b][color=yellow]Jim[/color][/b]"
 
 [node name="NPC2" parent="." node_paths=PackedStringArray("target_player") instance=ExtResource("2_vrunm")]
