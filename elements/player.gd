@@ -78,3 +78,17 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		$AnimatedSprite2D.play("sit_idle")
 	elif current_anim == "stand":
 		$AnimatedSprite2D.play("idle")
+
+
+# Alternate way to move the character only when the anim frame changes. Stuttery.
+func _on_animated_sprite_2d_frame_changed() -> void:
+	#var current_anim = $AnimatedSprite2D.animation
+	#if current_anim == "walk":
+		#var sprite_frames: SpriteFrames = $AnimatedSprite2D.sprite_frames
+		#var fps: float = sprite_frames.get_animation_speed(current_anim)
+		#if $AnimatedSprite2D.flip_h:
+			#position.x -= speed / fps
+		#else:
+			#position.x += speed / fps
+		#position.x = clampf(position.x, 0 + SCENE_MARGIN, scene_bound_right - SCENE_MARGIN)
+	pass

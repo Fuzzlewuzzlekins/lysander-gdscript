@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cckhdrlnfx5c7"]
+[gd_scene load_steps=17 format=3 uid="uid://cckhdrlnfx5c7"]
 
 [ext_resource type="PackedScene" uid="uid://cds4k72xvmuhp" path="res://elements/exit.tscn" id="1_y2yle"]
 [ext_resource type="PackedScene" uid="uid://d0dn1m0mgpbha" path="res://levels/living_room.tscn" id="2_y2yle"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://b44742yx7v4lj" path="res://assets/end_table.png" id="10_feehn"]
 [ext_resource type="Texture2D" uid="uid://bq4r6gh84io6e" path="res://assets/alarm.png" id="11_p4vkl"]
 [ext_resource type="PackedScene" uid="uid://bfhhyigp58xxk" path="res://elements/player.tscn" id="12_mkqlh"]
-[ext_resource type="Texture2D" uid="uid://cw0xjeni01nll" path="res://assets/lysander_idle_temp.png" id="13_lwrpj"]
 [ext_resource type="Texture2D" uid="uid://b2ob5eq03tysd" path="res://assets/desk.png" id="14_sofmq"]
 [ext_resource type="Texture2D" uid="uid://dlny5mgi7r2oh" path="res://assets/desk_chair.png" id="15_1f4of"]
 [ext_resource type="PackedScene" uid="uid://b36tyxmpgb1cq" path="res://elements/dialogue_box.tscn" id="16_ipsgu"]
@@ -108,12 +107,6 @@ vertical_alignment = 1
 [node name="Player" parent="SceneElements" instance=ExtResource("12_mkqlh")]
 position = Vector2(1120, 456)
 metadata/_edit_group_ = true
-
-[node name="AnimatedSprite2D" parent="SceneElements/Player" index="0"]
-visible = false
-
-[node name="LysanderIdleTemp" type="Sprite2D" parent="SceneElements/Player"]
-texture = ExtResource("13_lwrpj")
 
 [node name="Camera2D" type="Camera2D" parent="SceneElements/Player"]
 limit_left = 0
