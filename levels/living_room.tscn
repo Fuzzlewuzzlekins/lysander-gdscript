@@ -1,10 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://d0dn1m0mgpbha"]
+[gd_scene load_steps=23 format=3 uid="uid://d0dn1m0mgpbha"]
 
 [ext_resource type="PackedScene" uid="uid://cds4k72xvmuhp" path="res://elements/exit.tscn" id="1_alyfl"]
-[ext_resource type="PackedScene" uid="uid://bipuq40godms2" path="res://levels/test_scene.tscn" id="2_sifur"]
 [ext_resource type="Texture2D" uid="uid://mfliidafjdvl" path="res://assets/door.png" id="3_iyfjq"]
 [ext_resource type="PackedScene" uid="uid://bfhhyigp58xxk" path="res://elements/player.tscn" id="4_qrlfb"]
-[ext_resource type="Texture2D" uid="uid://cw0xjeni01nll" path="res://assets/lysander_idle_temp.png" id="5_wci2e"]
 [ext_resource type="Texture2D" uid="uid://hnvqpbvcaf7b" path="res://assets/dining_chair_2.png" id="6_fx3kc"]
 [ext_resource type="Texture2D" uid="uid://op3pg6kud00v" path="res://assets/dad_idle_temp.png" id="6_iyfjq"]
 [ext_resource type="Texture2D" uid="uid://cbabk8riuns6g" path="res://assets/dining_table_back.png" id="7_ao43s"]
@@ -15,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bg13hbqhqin30" path="res://elements/behavior.gd" id="12_brvyb"]
 [ext_resource type="Texture2D" uid="uid://o2jlvaakw1na" path="res://assets/mom_idle_temp.png" id="12_qrlfb"]
 [ext_resource type="Texture2D" uid="uid://c3vlh571vg7kh" path="res://assets/emmeline_idle_temp.png" id="13_b7rwi"]
+[ext_resource type="SpriteFrames" uid="uid://d2taa77bw3fh6" path="res://elements/lysander_sf_base.tres" id="15_wci2e"]
 [ext_resource type="PackedScene" uid="uid://b36tyxmpgb1cq" path="res://elements/dialogue_box.tscn" id="16_wci2e"]
 [ext_resource type="PackedScene" uid="uid://cwfxmpapwke63" path="res://elements/task.tscn" id="17_ao43s"]
 [ext_resource type="PackedScene" uid="uid://bue6448e60wtb" path="res://elements/hud.tscn" id="17_fx3kc"]
@@ -24,21 +23,21 @@
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_copq6"]
 gradient = SubResource("Gradient_ao43s")
 
+[sub_resource type="Resource" id="Resource_qrlfb"]
+resource_local_to_scene = true
+resource_name = "Behavior"
+script = ExtResource("12_brvyb")
+animation = "idle"
+duration = 1.0
+
+[sub_resource type="Resource" id="Resource_wci2e"]
+resource_local_to_scene = true
+resource_name = "Behavior"
+script = ExtResource("12_brvyb")
+animation = "idle"
+duration = 1.0
+
 [sub_resource type="Resource" id="Resource_fx3kc"]
-resource_local_to_scene = true
-resource_name = "Behavior"
-script = ExtResource("12_brvyb")
-animation = "idle"
-duration = 1.0
-
-[sub_resource type="Resource" id="Resource_ao43s"]
-resource_local_to_scene = true
-resource_name = "Behavior"
-script = ExtResource("12_brvyb")
-animation = "idle"
-duration = 1.0
-
-[sub_resource type="Resource" id="Resource_copq6"]
 resource_local_to_scene = true
 resource_name = "Behavior"
 script = ExtResource("12_brvyb")
@@ -57,6 +56,7 @@ color = Color(0, 0, 0, 1)
 [node name="Exit" parent="SceneElements" node_paths=PackedStringArray("target_player") instance=ExtResource("1_alyfl")]
 position = Vector2(856, 424)
 target_player = NodePath("../Player")
+next_scene = "uid://cckhdrlnfx5c7"
 next_scene_hint = "Bedroom"
 metadata/_edit_group_ = true
 
@@ -77,7 +77,7 @@ texture = ExtResource("3_iyfjq")
 position = Vector2(1272, 448)
 target_player = NodePath("../Player")
 dullness = 0.1
-next_scene = ExtResource("2_sifur")
+next_scene = "uid://bipuq40godms2"
 next_scene_hint = "Leave for school"
 prerequisites = [NodePath("../NPCMom/Task")]
 lock_message = "Need car keys"
@@ -102,7 +102,7 @@ horizontal_alignment = 2
 position = Vector2(408, 448)
 target_player = NodePath("../Player")
 tint = Color(0.39607844, 1, 0.56078434, 1)
-behaviors = Array[Resource]([SubResource("Resource_fx3kc")])
+behaviors = Array[Resource]([SubResource("Resource_qrlfb")])
 idle_dialogue = Array[String](["I'm taking Emma to school today."])
 metadata/_edit_group_ = true
 
@@ -146,7 +146,7 @@ texture = ExtResource("9_cuwug")
 position = Vector2(296, 460)
 target_player = NodePath("../Player")
 tint = Color(1, 0.5294118, 0.81960785, 1)
-behaviors = Array[Resource]([SubResource("Resource_ao43s")])
+behaviors = Array[Resource]([SubResource("Resource_wci2e")])
 idle_dialogue = Array[String](["Dad, we're gonna be late!"])
 metadata/_edit_group_ = true
 
@@ -164,7 +164,7 @@ texture = ExtResource("13_b7rwi")
 position = Vector2(1080, 456)
 target_player = NodePath("../Player")
 tint = Color(1, 0.8980392, 0.34901962, 1)
-behaviors = Array[Resource]([SubResource("Resource_copq6")])
+behaviors = Array[Resource]([SubResource("Resource_fx3kc")])
 idle_dialogue = Array[String](["Have a great day at school, sweetie!"])
 assign_dialogue = "Have a great... ah, I have your keys, don't ?"
 turn_in_dialogue = "Here you are! Drive safe!"
@@ -202,9 +202,9 @@ texture = ExtResource("10_0em5k")
 position = Vector2(856, 456)
 metadata/_edit_group_ = true
 
-[node name="LysanderIdleTemp" type="Sprite2D" parent="SceneElements/Player"]
-visible = false
-texture = ExtResource("5_wci2e")
+[node name="AnimatedSprite2D" parent="SceneElements/Player" index="0"]
+sprite_frames = ExtResource("15_wci2e")
+animation = &"walk"
 
 [node name="Camera2D" type="Camera2D" parent="SceneElements/Player"]
 limit_left = 0

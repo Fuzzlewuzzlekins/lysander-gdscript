@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://cckhdrlnfx5c7"]
+[gd_scene load_steps=16 format=3 uid="uid://cckhdrlnfx5c7"]
 
 [ext_resource type="PackedScene" uid="uid://cds4k72xvmuhp" path="res://elements/exit.tscn" id="1_y2yle"]
-[ext_resource type="PackedScene" uid="uid://d0dn1m0mgpbha" path="res://levels/living_room.tscn" id="2_y2yle"]
 [ext_resource type="Texture2D" uid="uid://mfliidafjdvl" path="res://assets/door.png" id="3_kajri"]
 [ext_resource type="Texture2D" uid="uid://dvsv8dpmihmei" path="res://assets/mirror.png" id="4_m4o02"]
 [ext_resource type="Texture2D" uid="uid://c71hgk2afj1va" path="res://assets/window_morning.png" id="5_7dtq1"]
@@ -29,7 +28,7 @@ color = Color(0, 0, 0, 1)
 [node name="Exit" parent="SceneElements" node_paths=PackedStringArray("target_player") instance=ExtResource("1_y2yle")]
 position = Vector2(376, 424)
 target_player = NodePath("../Player")
-next_scene = ExtResource("2_y2yle")
+next_scene = "uid://d0dn1m0mgpbha"
 next_scene_hint = "Living room"
 metadata/_edit_group_ = true
 
@@ -128,9 +127,15 @@ texture = ExtResource("15_1f4of")
 
 [node name="HUD" parent="." instance=ExtResource("17_pekuo")]
 
+[node name="SceneFade" type="ColorRect" parent="."]
+visible = false
+z_index = 1
+offset_right = 1344.0
+offset_bottom = 800.0
+color = Color(0, 0, 0, 1)
+
 [connection signal="highlight" from="SceneElements/Player" to="SceneElements/Exit" method="_on_player_highlight"]
 [connection signal="interact" from="SceneElements/Player" to="SceneElements/Exit" method="_on_player_interact"]
 [connection signal="unhighlight" from="SceneElements/Player" to="SceneElements/Exit" method="_on_player_unhighlight"]
 
 [editable path="SceneElements/Exit"]
-[editable path="SceneElements/Player"]

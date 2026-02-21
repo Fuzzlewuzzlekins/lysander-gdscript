@@ -7,7 +7,8 @@ signal turn_in_unwarn(task: CheckBox)
 
 @export var target_player: Area2D
 @export var dullness: float = 0.8
-@export var next_scene: PackedScene
+#@export var next_scene: PackedScene
+@export_file("*.tscn") var next_scene: String
 @export var next_scene_hint: String = "Leave"
 @export var prerequisites: Array[CheckBox]
 @export var lock_message: String
@@ -28,7 +29,8 @@ func _on_player_interact(area: Area2D) -> void:
 				turn_in.emit(task)
 		# If not locked, let player change scene
 		if prerequisites.size() == 0 and !lock_message:
-			get_tree().change_scene_to_packed(next_scene)
+			#get_tree().change_scene_to_packed(next_scene)
+			get_tree().change_scene_to_file(next_scene)
 
 
 func _on_player_highlight(area: Area2D) -> void:

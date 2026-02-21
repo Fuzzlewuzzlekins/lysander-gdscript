@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw0xjeni01nll"
-path="res://.godot/imported/lysander_idle_temp.png-1e391d0d1b3dd03f6d0cda102639cb55.ctex"
+uid="uid://dedxek5eiajs1"
+path="res://.godot/imported/lysander_walk0012.png-24022b92e2c856f06f2d93408f4c154f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/lysander_idle_temp.png"
-dest_files=["res://.godot/imported/lysander_idle_temp.png-1e391d0d1b3dd03f6d0cda102639cb55.ctex"]
+source_file="res://assets/lysander_walk0012.png"
+dest_files=["res://.godot/imported/lysander_walk0012.png-24022b92e2c856f06f2d93408f4c154f.ctex"]
 
 [params]
 

@@ -1,0 +1,132 @@
+[gd_resource type="SpriteFrames" load_steps=22 format=3 uid="uid://d2taa77bw3fh6"]
+
+[ext_resource type="Texture2D" uid="uid://cjbchqytc1f7f" path="res://assets/lysander_idle.png" id="1_gvhs5"]
+[ext_resource type="Texture2D" uid="uid://muyfm6kbnuj4" path="res://assets/lysander_temp_sprite.png" id="2_3gt8u"]
+[ext_resource type="Texture2D" uid="uid://18dkkxea1d50" path="res://assets/lysander_walk0001.png" id="3_44310"]
+[ext_resource type="Texture2D" uid="uid://di4qh8hytjc7t" path="res://assets/lysander_walk0002.png" id="4_ukgll"]
+[ext_resource type="Texture2D" uid="uid://en4v7x5i0pwj" path="res://assets/lysander_walk0003.png" id="5_e027k"]
+[ext_resource type="Texture2D" uid="uid://mdrf67lygb54" path="res://assets/lysander_walk0004.png" id="6_owjsi"]
+[ext_resource type="Texture2D" uid="uid://c83xjpkpdjh81" path="res://assets/lysander_walk0005.png" id="7_22vsb"]
+[ext_resource type="Texture2D" uid="uid://cvxax1d38656e" path="res://assets/lysander_walk0006.png" id="8_xm21y"]
+[ext_resource type="Texture2D" uid="uid://casbe21uo2004" path="res://assets/lysander_walk0007.png" id="9_m08vt"]
+[ext_resource type="Texture2D" uid="uid://bohrbug4rlc0q" path="res://assets/lysander_walk0008.png" id="10_1ulti"]
+[ext_resource type="Texture2D" uid="uid://c5fx2xjiw77p2" path="res://assets/lysander_walk0009.png" id="11_l7h41"]
+[ext_resource type="Texture2D" uid="uid://cqw1vmw507qky" path="res://assets/lysander_walk0010.png" id="12_bfnw6"]
+[ext_resource type="Texture2D" uid="uid://udbw7q3dugfr" path="res://assets/lysander_walk0011.png" id="13_4qiob"]
+[ext_resource type="Texture2D" uid="uid://dedxek5eiajs1" path="res://assets/lysander_walk0012.png" id="14_nqayc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_3gt8u")
+region = Rect2(16, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("2_3gt8u")
+region = Rect2(32, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
+atlas = ExtResource("2_3gt8u")
+region = Rect2(48, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
+atlas = ExtResource("2_3gt8u")
+region = Rect2(64, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
+atlas = ExtResource("2_3gt8u")
+region = Rect2(80, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
+atlas = ExtResource("2_3gt8u")
+region = Rect2(96, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
+atlas = ExtResource("2_3gt8u")
+region = Rect2(112, 32, 16, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gvhs5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}],
+"loop": false,
+"name": &"sit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs0m")
+}],
+"loop": true,
+"name": &"sit_idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jxqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw050")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b26j0")
+}],
+"loop": false,
+"name": &"stand",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_44310")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ukgll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_e027k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_owjsi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_22vsb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xm21y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_m08vt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1ulti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_l7h41")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_bfnw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_4qiob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_nqayc")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
