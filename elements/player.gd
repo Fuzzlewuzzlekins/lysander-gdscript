@@ -6,6 +6,9 @@ signal unhighlight(area: Area2D)
 
 @export var speed: float = 200
 #@export var anim_frame_rate: float = 10
+enum SpriteFrameSet {BASE, BACKPACK, PJS}
+@export var sprite_frame_sets: Array[SpriteFrames]
+@export var current_sprite_frame_set: SpriteFrameSet = SpriteFrameSet.BASE
 var closest_entity: Area2D = null
 var scene_bound_right: float = 10000
 const SCENE_MARGIN: float = 100.0
@@ -19,7 +22,7 @@ func _ready() -> void:
 		print("Found Background of width: %f", scene_bound_right)
 	else:
 		print("Background not found")
-		
+	$AnimatedSprite2D.sprite_frames = sprite_frame_sets[current_sprite_frame_set]
 
 
 func _process(delta: float) -> void:

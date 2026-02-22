@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d0dn1m0mgpbha"]
+[gd_scene load_steps=22 format=3 uid="uid://d0dn1m0mgpbha"]
 
 [ext_resource type="PackedScene" uid="uid://cds4k72xvmuhp" path="res://elements/exit.tscn" id="1_alyfl"]
 [ext_resource type="Texture2D" uid="uid://mfliidafjdvl" path="res://assets/door.png" id="3_iyfjq"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://bg13hbqhqin30" path="res://elements/behavior.gd" id="12_brvyb"]
 [ext_resource type="Texture2D" uid="uid://o2jlvaakw1na" path="res://assets/mom_idle_temp.png" id="12_qrlfb"]
 [ext_resource type="Texture2D" uid="uid://c3vlh571vg7kh" path="res://assets/emmeline_idle_temp.png" id="13_b7rwi"]
-[ext_resource type="SpriteFrames" uid="uid://d2taa77bw3fh6" path="res://elements/lysander_sf_base.tres" id="15_wci2e"]
 [ext_resource type="PackedScene" uid="uid://b36tyxmpgb1cq" path="res://elements/dialogue_box.tscn" id="16_wci2e"]
 [ext_resource type="PackedScene" uid="uid://cwfxmpapwke63" path="res://elements/task.tscn" id="17_ao43s"]
 [ext_resource type="PackedScene" uid="uid://bue6448e60wtb" path="res://elements/hud.tscn" id="17_fx3kc"]
@@ -202,10 +201,6 @@ texture = ExtResource("10_0em5k")
 position = Vector2(856, 456)
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" parent="SceneElements/Player" index="0"]
-sprite_frames = ExtResource("15_wci2e")
-animation = &"walk"
-
 [node name="Camera2D" type="Camera2D" parent="SceneElements/Player"]
 limit_left = 0
 limit_top = 0
@@ -244,4 +239,3 @@ limit_bottom = 800
 [editable path="SceneElements/NPCEmma"]
 [editable path="SceneElements/NPCMom"]
 [editable path="SceneElements/NPCMom/Task"]
-[editable path="SceneElements/Player"]

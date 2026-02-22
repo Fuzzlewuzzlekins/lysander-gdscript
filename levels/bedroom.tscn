@@ -105,6 +105,7 @@ vertical_alignment = 1
 
 [node name="Player" parent="SceneElements" instance=ExtResource("12_mkqlh")]
 position = Vector2(1120, 456)
+current_sprite_frame_set = 2
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="SceneElements/Player"]
