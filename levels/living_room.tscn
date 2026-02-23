@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://d0dn1m0mgpbha"]
+[gd_scene load_steps=21 format=3 uid="uid://d0dn1m0mgpbha"]
 
 [ext_resource type="PackedScene" uid="uid://cds4k72xvmuhp" path="res://elements/exit.tscn" id="1_alyfl"]
 [ext_resource type="Texture2D" uid="uid://mfliidafjdvl" path="res://assets/door.png" id="3_iyfjq"]
+[ext_resource type="Texture2D" uid="uid://bbg7gh8xcj1bn" path="res://elements/gradient1d.tres" id="3_wci2e"]
 [ext_resource type="PackedScene" uid="uid://bfhhyigp58xxk" path="res://elements/player.tscn" id="4_qrlfb"]
 [ext_resource type="Texture2D" uid="uid://hnvqpbvcaf7b" path="res://assets/dining_chair_2.png" id="6_fx3kc"]
 [ext_resource type="Texture2D" uid="uid://op3pg6kud00v" path="res://assets/dad_idle_temp.png" id="6_iyfjq"]
@@ -16,11 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://b36tyxmpgb1cq" path="res://elements/dialogue_box.tscn" id="16_wci2e"]
 [ext_resource type="PackedScene" uid="uid://cwfxmpapwke63" path="res://elements/task.tscn" id="17_ao43s"]
 [ext_resource type="PackedScene" uid="uid://bue6448e60wtb" path="res://elements/hud.tscn" id="17_fx3kc"]
-
-[sub_resource type="Gradient" id="Gradient_ao43s"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_copq6"]
-gradient = SubResource("Gradient_ao43s")
 
 [sub_resource type="Resource" id="Resource_qrlfb"]
 resource_local_to_scene = true
@@ -85,7 +81,7 @@ lock_message = "Need car keys"
 visible = true
 position = Vector2(63.999985, -16.000008)
 scale = Vector2(1.0624996, 288.00003)
-texture = SubResource("GradientTexture1D_copq6")
+texture = ExtResource("3_wci2e")
 
 [node name="Panel" parent="SceneElements/Exit2" index="1"]
 visible = false

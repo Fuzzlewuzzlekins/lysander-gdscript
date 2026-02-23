@@ -22,15 +22,22 @@ func _ready() -> void:
 
 
 func _on_entity_assign(task: CheckBox) -> void:
+	# Add task to Gamestate
 	Gamestate.active_tasks.append(task)
 	Gamestate.active_tasks_data.get_or_add(task.name)
 	Gamestate.active_tasks_data[task.name]  = {
 		"time_cost": task.time_cost,
 		"energy_cost": task.energy_cost,
 		"turn_in": task.turn_in.get_path(),
-		"rich_text": task.rich_text
+		"rich_text": task.rich_text,
+		"unlocks": []
 	}
-	print(Gamestate.active_tasks_data)
+	var exits = get_tree().current_scene.find_children("Exit*")
+	for exit in exits:
+		print("Checking exit " + exit.name)
+		if exit.prerequisites.has(task):
+			print("Exit has " + task.name + " as prereq")
+			Gamestate.active_tasks_data[task.name]["unlocks"].append(exit.get_path())
 	task.reparent($TopRightPanel/TaskList, false)
 	task.show()
 	var tween = get_tree().create_tween()

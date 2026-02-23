@@ -7,7 +7,6 @@ signal turn_in_unwarn(task: CheckBox)
 
 @export var target_player: Area2D
 @export var dullness: float = 0.8
-#@export var next_scene: PackedScene
 @export_file("*.tscn") var next_scene: String
 @export var next_scene_hint: String = "Leave"
 @export var prerequisites: Array[CheckBox]
@@ -29,8 +28,17 @@ func _on_player_interact(area: Area2D) -> void:
 				turn_in.emit(task)
 		# If not locked, let player change scene
 		if prerequisites.size() == 0 and !lock_message:
-			#get_tree().change_scene_to_packed(next_scene)
-			get_tree().change_scene_to_file(next_scene)
+			# Freeze current scene state
+			var current_scene_name = get_tree().current_scene.name
+			Gamestate.frozen_scenes.get_or_add(current_scene_name)
+			Gamestate.frozen_scenes[current_scene_name] = PackedScene.new()
+			Gamestate.frozen_scenes[current_scene_name].pack(get_tree().current_scene)
+			# Check to see if my next_scene has a frozen variant
+			var next_scene_packed = load(next_scene)
+			var next_scene_name = next_scene_packed.get_state().get_node_name(0)
+			if Gamestate.frozen_scenes.has(next_scene_name):
+				next_scene_packed = Gamestate.frozen_scenes[next_scene_name]
+			get_tree().change_scene_to_packed(next_scene_packed)
 
 
 func _on_player_highlight(area: Area2D) -> void:
@@ -62,7 +70,21 @@ func _on_player_unhighlight(area: Area2D) -> void:
 
 
 func _on_entity_turn_in(task: CheckBox) -> void:
+	# First let's restore any lost prereqs. 
+	# (Would prefer to run this on _ready(), but it conflicts w/ HUD)
+	for i in prerequisites.size():
+		if prerequisites[i] == null:
+			# Task pointer was lost in scene reload. Let's find it.
+			for old_task in Gamestate.active_tasks:
+				var task_data = Gamestate.active_tasks_data[old_task.name]
+				if task_data["unlocks"].has(get_path()):
+					# I'm flagged as "unlockable" by this task. I'll put this task back in my prereqs.
+					prerequisites[i] = old_task
+	# Now let's see if we can mark a prereq as complete
 	if prerequisites.has(task):
 		prerequisites.erase(task)
+		print("Cleared task: " + task.name)
 		if prerequisites.size() == 0:
 			lock_message = ""
+	else:
+		print("Turned in " + task.name + " but didn't find it.")
