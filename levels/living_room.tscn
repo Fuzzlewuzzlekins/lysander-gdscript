@@ -188,9 +188,7 @@ offset_bottom = 24.0
 time_cost = 0
 energy_cost = 0
 turn_in = NodePath("..")
-
-[node name="Label" parent="SceneElements/NPCMom/Task" index="0"]
-text = "Get car keys from [color=yellow]Mom[/color]"
+rich_text = "Get car keys from [color=yellow]Mom[/color]"
 
 [node name="EndTable" type="Sprite2D" parent="SceneElements"]
 modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
@@ -220,14 +218,17 @@ limit_bottom = 800
 [connection signal="turn_in" from="SceneElements/NPCMom" to="HUD" method="_on_entity_turn_in"]
 [connection signal="turn_in_unwarn" from="SceneElements/NPCMom" to="HUD" method="_on_entity_turn_in_unwarn"]
 [connection signal="turn_in_warn" from="SceneElements/NPCMom" to="HUD" method="_on_entity_turn_in_warn"]
+[connection signal="highlight" from="SceneElements/Player" to="SceneElements/Exit" method="_on_player_highlight"]
 [connection signal="highlight" from="SceneElements/Player" to="SceneElements/Exit2" method="_on_player_highlight"]
 [connection signal="highlight" from="SceneElements/Player" to="SceneElements/NPCDad" method="_on_player_highlight"]
 [connection signal="highlight" from="SceneElements/Player" to="SceneElements/NPCEmma" method="_on_player_highlight"]
 [connection signal="highlight" from="SceneElements/Player" to="SceneElements/NPCMom" method="_on_player_highlight"]
+[connection signal="interact" from="SceneElements/Player" to="SceneElements/Exit" method="_on_player_interact"]
 [connection signal="interact" from="SceneElements/Player" to="SceneElements/Exit2" method="_on_player_interact"]
 [connection signal="interact" from="SceneElements/Player" to="SceneElements/NPCDad" method="_on_player_interact"]
 [connection signal="interact" from="SceneElements/Player" to="SceneElements/NPCEmma" method="_on_player_interact"]
 [connection signal="interact" from="SceneElements/Player" to="SceneElements/NPCMom" method="_on_player_interact"]
+[connection signal="unhighlight" from="SceneElements/Player" to="SceneElements/Exit" method="_on_player_unhighlight"]
 [connection signal="unhighlight" from="SceneElements/Player" to="SceneElements/Exit2" method="_on_player_unhighlight"]
 [connection signal="unhighlight" from="SceneElements/Player" to="SceneElements/NPCDad" method="_on_player_unhighlight"]
 [connection signal="unhighlight" from="SceneElements/Player" to="SceneElements/NPCEmma" method="_on_player_unhighlight"]
@@ -238,4 +239,3 @@ limit_bottom = 800
 [editable path="SceneElements/NPCDad"]
 [editable path="SceneElements/NPCEmma"]
 [editable path="SceneElements/NPCMom"]
-[editable path="SceneElements/NPCMom/Task"]

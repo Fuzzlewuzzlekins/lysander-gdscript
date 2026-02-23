@@ -71,9 +71,7 @@ assign_dialogue = "Hey, have you talked to Jim lately?"
 [node name="Task" parent="NPC" node_paths=PackedStringArray("turn_in") instance=ExtResource("4_vehgu")]
 energy_cost = 20
 turn_in = NodePath("../../NPC2")
-
-[node name="Label" parent="NPC/Task" index="0"]
-text = "Go talk to [b][color=yellow]Jim[/color][/b]"
+rich_text = "Go talk to [b][color=yellow]Jim[/color][/b]"
 
 [node name="NPC2" parent="." node_paths=PackedStringArray("target_player") instance=ExtResource("2_vrunm")]
 position = Vector2(416, 400)
@@ -115,5 +113,3 @@ limit_bottom = 800
 [connection signal="unhighlight" from="Player" to="Exit" method="_on_player_unhighlight"]
 [connection signal="unhighlight" from="Player" to="NPC" method="_on_player_unhighlight"]
 [connection signal="unhighlight" from="Player" to="NPC2" method="_on_player_unhighlight"]
-
-[editable path="NPC/Task"]

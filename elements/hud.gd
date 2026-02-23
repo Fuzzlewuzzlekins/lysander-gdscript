@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+@export var task_scene: PackedScene
 @export var task_fade_speed: float = 1.0
 var task_current_warning: CheckBox
 var task_warn_tween: Tween
@@ -7,10 +8,29 @@ var task_warn_tween: Tween
 func _ready() -> void:
 	$TopRightPanel/EnergyBarBase.value = Gamestate.current_energy
 	$TopRightPanel/EnergyBarBase/EnergyBarOverlay.value = Gamestate.current_energy
+	Gamestate.active_tasks.clear()
+	for task_name in Gamestate.active_tasks_data:
+		var task = task_scene.instantiate()
+		task.name = task_name
+		var task_data = Gamestate.active_tasks_data[task_name]
+		task.time_cost = task_data["time_cost"]
+		task.energy_cost = task_data["energy_cost"]
+		task.turn_in = get_node(task_data["turn_in"])
+		task.rich_text = task_data["rich_text"]
+		Gamestate.active_tasks.append(task)
+		$TopRightPanel/TaskList.add_child(task)
 
 
 func _on_entity_assign(task: CheckBox) -> void:
 	Gamestate.active_tasks.append(task)
+	Gamestate.active_tasks_data.get_or_add(task.name)
+	Gamestate.active_tasks_data[task.name]  = {
+		"time_cost": task.time_cost,
+		"energy_cost": task.energy_cost,
+		"turn_in": task.turn_in.get_path(),
+		"rich_text": task.rich_text
+	}
+	print(Gamestate.active_tasks_data)
 	task.reparent($TopRightPanel/TaskList, false)
 	task.show()
 	var tween = get_tree().create_tween()
@@ -31,6 +51,7 @@ func _on_entity_turn_in(task: CheckBox) -> void:
 	task.modulate.a = 1.0
 	# Clear task
 	Gamestate.active_tasks.erase(task)
+	Gamestate.active_tasks_data.erase(task.name)
 	task.button_pressed = true
 	task.disabled = true
 	var tween = get_tree().create_tween()

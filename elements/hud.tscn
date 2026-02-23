@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bue6448e60wtb"]
+[gd_scene load_steps=6 format=3 uid="uid://bue6448e60wtb"]
 
 [ext_resource type="Script" uid="uid://bx222xkndh2x8" path="res://elements/hud.gd" id="1_37p78"]
+[ext_resource type="PackedScene" uid="uid://cwfxmpapwke63" path="res://elements/task.tscn" id="2_22ypy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37p78"]
 bg_color = Color(1, 1, 1, 1)
@@ -33,6 +34,7 @@ corner_radius_bottom_left = 2
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_37p78")
+task_scene = ExtResource("2_22ypy")
 
 [node name="TopRightPanel" type="VBoxContainer" parent="."]
 anchors_preset = 1
