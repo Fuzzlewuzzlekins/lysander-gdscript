@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d0dn1m0mgpbha"]
+[gd_scene load_steps=48 format=3 uid="uid://d0dn1m0mgpbha"]
 
 [ext_resource type="PackedScene" uid="uid://cds4k72xvmuhp" path="res://elements/exit.tscn" id="1_alyfl"]
 [ext_resource type="Texture2D" uid="uid://mfliidafjdvl" path="res://assets/door.png" id="3_iyfjq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://hnvqpbvcaf7b" path="res://assets/dining_chair_2.png" id="6_fx3kc"]
 [ext_resource type="Texture2D" uid="uid://op3pg6kud00v" path="res://assets/dad_idle_temp.png" id="6_iyfjq"]
 [ext_resource type="Texture2D" uid="uid://cbabk8riuns6g" path="res://assets/dining_table_back.png" id="7_ao43s"]
+[ext_resource type="Texture2D" uid="uid://muyfm6kbnuj4" path="res://assets/lysander_temp_sprite.png" id="7_copq6"]
 [ext_resource type="Texture2D" uid="uid://d3buu1yodqn1u" path="res://assets/dining_chair_1.png" id="8_copq6"]
 [ext_resource type="Texture2D" uid="uid://xbkiajmfcgav" path="res://assets/dining_table.png" id="9_cuwug"]
 [ext_resource type="Texture2D" uid="uid://b44742yx7v4lj" path="res://assets/end_table.png" id="10_0em5k"]
@@ -19,14 +20,150 @@
 [ext_resource type="PackedScene" uid="uid://cwfxmpapwke63" path="res://elements/task.tscn" id="17_ao43s"]
 [ext_resource type="PackedScene" uid="uid://bue6448e60wtb" path="res://elements/hud.tscn" id="17_fx3kc"]
 
-[sub_resource type="Resource" id="Resource_wci2e"]
+[sub_resource type="Resource" id="Resource_38v8a"]
 resource_local_to_scene = true
 resource_name = "Behavior"
 script = ExtResource("12_brvyb")
 animation = "idle"
 duration = 1.0
 
-[sub_resource type="Resource" id="Resource_fx3kc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("7_copq6")
+region = Rect2(16, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("7_copq6")
+region = Rect2(32, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
+atlas = ExtResource("7_copq6")
+region = Rect2(48, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
+atlas = ExtResource("7_copq6")
+region = Rect2(64, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
+atlas = ExtResource("7_copq6")
+region = Rect2(80, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
+atlas = ExtResource("7_copq6")
+region = Rect2(96, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
+atlas = ExtResource("7_copq6")
+region = Rect2(112, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7ghd"]
+atlas = ExtResource("7_copq6")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvl01"]
+atlas = ExtResource("7_copq6")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivps1"]
+atlas = ExtResource("7_copq6")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urp6f"]
+atlas = ExtResource("7_copq6")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwjto"]
+atlas = ExtResource("7_copq6")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_606se"]
+atlas = ExtResource("7_copq6")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1c27"]
+atlas = ExtResource("7_copq6")
+region = Rect2(96, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_op7ga"]
+atlas = ExtResource("7_copq6")
+region = Rect2(112, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pb46f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_iyfjq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}],
+"loop": false,
+"name": &"sit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs0m")
+}],
+"loop": true,
+"name": &"sit_idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jxqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw050")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b26j0")
+}],
+"loop": false,
+"name": &"stand",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7ghd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvl01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivps1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urp6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwjto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_606se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1c27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op7ga")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="Resource" id="Resource_3kcmy"]
 resource_local_to_scene = true
 resource_name = "Behavior"
 script = ExtResource("12_brvyb")
@@ -38,43 +175,208 @@ script = ExtResource("12_fx3kc")
 speaker = NodePath(".")
 text = "Hey, Sander! Tell Dad to move his butt!"
 animation = "idle"
+facing = NodePath("../Player")
 
 [sub_resource type="Resource" id="Resource_4jr8h"]
 script = ExtResource("12_fx3kc")
 speaker = NodePath("../Player")
 text = "I think he can hear you just fine, Em."
 animation = "idle"
+facing = NodePath(".")
 
 [sub_resource type="Resource" id="Resource_brvyb"]
 script = ExtResource("12_fx3kc")
 speaker = NodePath("../NPCDad")
 text = "He's right, you know."
 animation = "idle"
+facing = NodePath("../Player")
 
 [sub_resource type="Resource" id="Resource_b7rwi"]
 script = ExtResource("12_fx3kc")
 speaker = NodePath(".")
 text = "Well, then he's got no excuse!"
 animation = "idle"
+facing = NodePath("../NPCDad")
 
-[sub_resource type="Resource" id="Resource_ao43s"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_clei5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_b7rwi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}],
+"loop": false,
+"name": &"sit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs0m")
+}],
+"loop": true,
+"name": &"sit_idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jxqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw050")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b26j0")
+}],
+"loop": false,
+"name": &"stand",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7ghd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvl01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivps1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urp6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwjto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_606se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1c27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op7ga")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="Resource" id="Resource_k0nn3"]
 resource_local_to_scene = true
 resource_name = "Behavior"
 script = ExtResource("12_brvyb")
 animation = "idle"
 duration = 1.0
 
+[sub_resource type="Resource" id="Resource_ao43s"]
+script = ExtResource("12_fx3kc")
+speaker = NodePath(".")
+text = "Have a great... ah, I have your keys, don't I?"
+animation = "idle"
+facing = NodePath("../Player")
+
 [sub_resource type="Resource" id="Resource_copq6"]
 script = ExtResource("12_fx3kc")
 speaker = NodePath("../Player")
 text = "That's right, you had the car last night."
 animation = "idle"
+facing = NodePath(".")
 
 [sub_resource type="Resource" id="Resource_cuwug"]
 script = ExtResource("12_fx3kc")
 speaker = NodePath(".")
-text = "Here you are. Now drive safe!"
+text = "Well, let me know when you're ready to leave."
 animation = "idle"
+facing = NodePath("../Player")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o28bs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_qrlfb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}],
+"loop": false,
+"name": &"sit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs0m")
+}],
+"loop": true,
+"name": &"sit_idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jxqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw050")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b26j0")
+}],
+"loop": false,
+"name": &"stand",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7ghd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvl01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivps1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urp6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwjto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_606se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1c27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op7ga")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
 
 [node name="LivingRoom" type="Node2D"]
 
@@ -133,19 +435,15 @@ texture = ExtResource("3_wci2e")
 position = Vector2(408, 448)
 target_player = NodePath("../Player")
 tint = Color(0.39607844, 1, 0.56078434, 1)
-behaviors = Array[Resource]([SubResource("Resource_wci2e")])
-idle_dialogue = Array[String](["I'm taking Emma to school today."])
+behaviors = Array[Resource]([SubResource("Resource_38v8a")])
+idle_dialogue = Array[String](["I'm taking Emmeline to school today."])
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="SceneElements/NPCDad" index="0"]
-visible = false
+sprite_frames = SubResource("SpriteFrames_pb46f")
 
 [node name="CollisionShape2D" parent="SceneElements/NPCDad" index="1"]
 position = Vector2(0, 4)
-
-[node name="DadIdleTemp" type="Sprite2D" parent="SceneElements/NPCDad"]
-modulate = Color(0.39607844, 1, 0.56078434, 1)
-texture = ExtResource("6_iyfjq")
 
 [node name="DiningChair2" type="Sprite2D" parent="SceneElements"]
 modulate = Color(0.8666667, 0.8666667, 0.8666667, 1)
@@ -177,43 +475,35 @@ texture = ExtResource("9_cuwug")
 position = Vector2(296, 460)
 target_player = NodePath("../Player")
 tint = Color(1, 0.5294118, 0.81960785, 1)
-behaviors = Array[Resource]([SubResource("Resource_fx3kc")])
+behaviors = Array[Resource]([SubResource("Resource_3kcmy")])
 idle_dialogue = Array[String](["Dad, we're gonna be late!"])
 complex_dialogue = Array[Resource]([SubResource("Resource_0em5k"), SubResource("Resource_4jr8h"), SubResource("Resource_brvyb"), SubResource("Resource_b7rwi")])
 complex_dialogue_type = 0
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="SceneElements/NPCEmma" index="0"]
-visible = false
+sprite_frames = SubResource("SpriteFrames_clei5")
 
 [node name="CollisionShape2D" parent="SceneElements/NPCEmma" index="1"]
 position = Vector2(0, 4)
-
-[node name="EmmelineIdleTemp" type="Sprite2D" parent="SceneElements/NPCEmma"]
-modulate = Color(1, 0.5294118, 0.81960785, 1)
-texture = ExtResource("13_b7rwi")
 
 [node name="NPCMom" parent="SceneElements" node_paths=PackedStringArray("target_player") instance=ExtResource("11_4jr8h")]
 position = Vector2(1080, 456)
 target_player = NodePath("../Player")
 tint = Color(1, 0.8980392, 0.34901962, 1)
-behaviors = Array[Resource]([SubResource("Resource_ao43s")])
+behaviors = Array[Resource]([SubResource("Resource_k0nn3")])
 idle_dialogue = Array[String](["Have a great day at school, sweetie!"])
 assign_dialogue = "Have a great... ah, I have your keys, don't I?"
 turn_in_dialogue = "Here you are! Drive safe!"
-complex_dialogue = Array[Resource]([SubResource("Resource_copq6"), SubResource("Resource_cuwug")])
+complex_dialogue = Array[Resource]([SubResource("Resource_ao43s"), SubResource("Resource_copq6"), SubResource("Resource_cuwug")])
+complex_dialogue_type = 1
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="SceneElements/NPCMom" index="0"]
-visible = false
+sprite_frames = SubResource("SpriteFrames_o28bs")
 
 [node name="CollisionShape2D" parent="SceneElements/NPCMom" index="1"]
 position = Vector2(0, 4)
-
-[node name="MomIdleTemp" type="Sprite2D" parent="SceneElements/NPCMom"]
-modulate = Color(1, 0.8980392, 0.34901962, 1)
-texture = ExtResource("12_qrlfb")
-flip_h = true
 
 [node name="Task" parent="SceneElements/NPCMom" node_paths=PackedStringArray("turn_in") instance=ExtResource("17_ao43s")]
 offset_left = 232.0

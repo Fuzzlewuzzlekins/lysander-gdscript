@@ -11,6 +11,7 @@ signal start_conversation(character: Area2D, c_dialogue: Array[Resource])
 @export var tint: Color = Color.WHITE
 @export var dullness: float = 0.8
 @export var behaviors: Array[Resource]
+@export var in_conversation: bool = false
 @export_group("Dialogue")
 @export var idle_dialogue: Array[String]
 @export var assign_dialogue: String
@@ -36,17 +37,19 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	# Tick the behavior timer
-	behavior_elapsed_time += delta
-	if behavior_elapsed_time > behaviors[0]["duration"]:
-		# If it's time for the next behavior, reset timer and move current behavior to the end of the list.
-		behavior_elapsed_time -= behaviors[0]["duration"]
-		var old_behavior = behaviors.pop_front()
-		behaviors.append(old_behavior)
-	# Handle behavior. Keys: "animation", "speed", "flip_h", duration"
-	$AnimatedSprite2D.play(behaviors[0]["animation"])
-	$AnimatedSprite2D.flip_h = behaviors[0]["flip_h"]
-	position.x += behaviors[0]["speed"] * delta
+	# Run background behaviors if not busy in a conversation.
+	if !in_conversation:
+		# Tick the behavior timer
+		behavior_elapsed_time += delta
+		if behavior_elapsed_time > behaviors[0]["duration"]:
+			# If it's time for the next behavior, reset timer and move current behavior to the end of the list.
+			behavior_elapsed_time -= behaviors[0]["duration"]
+			var old_behavior = behaviors.pop_front()
+			behaviors.append(old_behavior)
+		# Handle behavior. Keys: "animation", "speed", "flip_h", duration"
+		$AnimatedSprite2D.play(behaviors[0]["animation"])
+		$AnimatedSprite2D.flip_h = behaviors[0]["flip_h"]
+		position.x += behaviors[0]["speed"] * delta
 
 
 func _on_player_interact(area: Area2D) -> void:

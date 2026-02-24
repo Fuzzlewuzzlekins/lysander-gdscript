@@ -5,6 +5,7 @@ signal highlight(area: Area2D)
 signal unhighlight(area: Area2D)
 
 @export var speed: float = 200
+@export var in_conversation: bool = false
 #@export var anim_frame_rate: float = 10
 enum SpriteFrameSet {BASE, BACKPACK, PJS}
 @export var sprite_frame_sets: Array[SpriteFrames]
@@ -74,6 +75,8 @@ func _process(delta: float) -> void:
 			if closest_entity:
 				unhighlight.emit(closest_entity)
 				closest_entity = null
+	else:
+		in_conversation = true
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:

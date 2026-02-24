@@ -43,18 +43,35 @@ func _on_npc_say(character: Area2D, dialogue: String) -> void:
 
 func _on_npc_start_conversation(character: Area2D, c_dialogue: Array[Resource]) -> void:
 	Gamestate.conversation_active = true
+	var involved_characters = []
 	# Dialogue line scheme: "speaker" is NodePath from NPC, "text" and "animation" are self-explanatory
 	for i in c_dialogue.size():
 		var line = c_dialogue[i]
 		var speaker = character.get_node(line["speaker"])
-		print("Speaker is " + speaker.name)
+		var facing = character.get_node_or_null(line["facing"])
+		# Flag speaker as busy in conversation
+		speaker.in_conversation = true
+		if !involved_characters.has(speaker):
+			involved_characters.append(speaker)
+		# Update animation and facing of the character speaking
+		speaker.get_node("AnimatedSprite2D").animation = line["animation"]
+		if facing:
+			if speaker.global_position.x > facing.global_position.x:
+				speaker.get_node("AnimatedSprite2D").flip_h = true
+			else:
+				speaker.get_node("AnimatedSprite2D").flip_h = false
+		# Say dialogue and await player input
 		say_as_character(speaker, line["text"], false)
 		await confirm
+		speaker.get_node("AnimatedSprite2D").animation = "idle"
 	if tween:
 		tween.kill()
+	# Cleanup
 	tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.5)
 	Gamestate.conversation_active = false
+	for speaker in involved_characters:
+		speaker.in_conversation = false
 
 
 func _input(event: InputEvent) -> void:
