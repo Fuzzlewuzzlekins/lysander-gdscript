@@ -6,3 +6,4 @@ extends Node
 @export var active_tasks: Array[CheckBox]
 @export var active_tasks_data: Dictionary
 @export var frozen_scenes: Dictionary
+@export var conversation_active: bool

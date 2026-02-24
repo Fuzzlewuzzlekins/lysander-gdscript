@@ -5,6 +5,7 @@ signal turn_in(task: CheckBox)
 signal turn_in_warn(task: CheckBox)
 signal turn_in_unwarn(task: CheckBox)
 signal say(character: Area2D, dialogue: String)
+signal start_conversation(character: Area2D, c_dialogue: Array[Resource])
 
 @export var target_player: Area2D
 @export var tint: Color = Color.WHITE
@@ -14,6 +15,9 @@ signal say(character: Area2D, dialogue: String)
 @export var idle_dialogue: Array[String]
 @export var assign_dialogue: String
 @export var turn_in_dialogue: String
+@export var complex_dialogue: Array[Resource]
+enum DialogueType {IDLE, ASSIGN, TURN_IN}
+@export var complex_dialogue_type: DialogueType = DialogueType.TURN_IN
 var behavior_elapsed_time: float
 var assignment: CheckBox
 
@@ -57,18 +61,28 @@ func _on_player_interact(area: Area2D) -> void:
 			var task = Gamestate.active_tasks.get(i)
 			if task.turn_in == self and Gamestate.current_energy > task.energy_cost:
 				turn_in.emit(task)
-				if turn_in_dialogue:
+				if complex_dialogue and complex_dialogue_type == DialogueType.TURN_IN:
+					start_conversation.emit(self, complex_dialogue)
+					complex_dialogue = []
+				elif turn_in_dialogue:
 					say.emit(self, turn_in_dialogue)
 				return
 		# If I have an assignment, assign it
 		if assignment != null:
 			assign.emit(assignment)
 			assignment = null
-			if assign_dialogue:
+			if complex_dialogue and complex_dialogue_type == DialogueType.ASSIGN:
+				start_conversation.emit(self, complex_dialogue)
+				complex_dialogue = []
+			elif assign_dialogue:
 				say.emit(self, assign_dialogue)
 			return
+		# If I have an idle conversation, start it
+		if complex_dialogue and complex_dialogue_type == DialogueType.IDLE:
+			start_conversation.emit(self, complex_dialogue)
+			complex_dialogue = []
 		# If I have idle dialogue, loop through it
-		if idle_dialogue:
+		elif idle_dialogue:
 			var current_dialogue = idle_dialogue.pop_front()
 			say.emit(self, current_dialogue)
 			idle_dialogue.append(current_dialogue)

@@ -32,13 +32,13 @@ next_scene = "uid://d0dn1m0mgpbha"
 next_scene_hint = "Living room"
 metadata/_edit_group_ = true
 
-[node name="Panel" parent="SceneElements/Exit" index="1"]
+[node name="Panel" parent="SceneElements/Exit" index="0"]
 visible = false
 
-[node name="CollisionShape2D" parent="SceneElements/Exit" index="2"]
+[node name="CollisionShape2D" parent="SceneElements/Exit" index="1"]
 position = Vector2(0, 8)
 
-[node name="Label" parent="SceneElements/Exit" index="3"]
+[node name="Label" parent="SceneElements/Exit" index="2"]
 offset_top = -176.0
 offset_bottom = -153.0
 

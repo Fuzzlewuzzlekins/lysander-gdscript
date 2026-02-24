@@ -15,7 +15,7 @@ func _ready() -> void:
 		var task_data = Gamestate.active_tasks_data[task_name]
 		task.time_cost = task_data["time_cost"]
 		task.energy_cost = task_data["energy_cost"]
-		task.turn_in = get_node(task_data["turn_in"])
+		task.turn_in = get_node_or_null(task_data["turn_in"])
 		task.rich_text = task_data["rich_text"]
 		Gamestate.active_tasks.append(task)
 		$TopRightPanel/TaskList.add_child(task)
@@ -88,6 +88,10 @@ func _on_entity_turn_in_warn(task: CheckBox) -> void:
 		task_warn_tween.tween_property($TopRightPanel/EnergyBarBase, "self_modulate:a", 1.0, 0.5)
 		task_warn_tween.parallel().tween_property(task, "modulate:a", 1.0, 0.5)
 		$TopRightPanel/EnergyBarBase.self_modulate = Color.GREEN
+	else:
+		task_warn_tween = get_tree().create_tween().set_loops()
+		task_warn_tween.tween_property(task, "modulate:a", 0.5, 0.5)
+		task_warn_tween.tween_property(task, "modulate:a", 1.0, 0.5)
 
 
 func _on_entity_turn_in_unwarn(task: CheckBox) -> void:

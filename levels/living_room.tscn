@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d0dn1m0mgpbha"]
+[gd_scene load_steps=28 format=3 uid="uid://d0dn1m0mgpbha"]
 
 [ext_resource type="PackedScene" uid="uid://cds4k72xvmuhp" path="res://elements/exit.tscn" id="1_alyfl"]
 [ext_resource type="Texture2D" uid="uid://mfliidafjdvl" path="res://assets/door.png" id="3_iyfjq"]
@@ -12,18 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://b44742yx7v4lj" path="res://assets/end_table.png" id="10_0em5k"]
 [ext_resource type="PackedScene" uid="uid://b6rg1hfp63y7e" path="res://elements/npc.tscn" id="11_4jr8h"]
 [ext_resource type="Script" uid="uid://bg13hbqhqin30" path="res://elements/behavior.gd" id="12_brvyb"]
+[ext_resource type="Script" uid="uid://bih2y4dm2dcy4" path="res://elements/dialogue_line.gd" id="12_fx3kc"]
 [ext_resource type="Texture2D" uid="uid://o2jlvaakw1na" path="res://assets/mom_idle_temp.png" id="12_qrlfb"]
 [ext_resource type="Texture2D" uid="uid://c3vlh571vg7kh" path="res://assets/emmeline_idle_temp.png" id="13_b7rwi"]
 [ext_resource type="PackedScene" uid="uid://b36tyxmpgb1cq" path="res://elements/dialogue_box.tscn" id="16_wci2e"]
 [ext_resource type="PackedScene" uid="uid://cwfxmpapwke63" path="res://elements/task.tscn" id="17_ao43s"]
 [ext_resource type="PackedScene" uid="uid://bue6448e60wtb" path="res://elements/hud.tscn" id="17_fx3kc"]
-
-[sub_resource type="Resource" id="Resource_qrlfb"]
-resource_local_to_scene = true
-resource_name = "Behavior"
-script = ExtResource("12_brvyb")
-animation = "idle"
-duration = 1.0
 
 [sub_resource type="Resource" id="Resource_wci2e"]
 resource_local_to_scene = true
@@ -38,6 +32,49 @@ resource_name = "Behavior"
 script = ExtResource("12_brvyb")
 animation = "idle"
 duration = 1.0
+
+[sub_resource type="Resource" id="Resource_0em5k"]
+script = ExtResource("12_fx3kc")
+speaker = NodePath(".")
+text = "Hey, Sander! Tell Dad to move his butt!"
+animation = "idle"
+
+[sub_resource type="Resource" id="Resource_4jr8h"]
+script = ExtResource("12_fx3kc")
+speaker = NodePath("../Player")
+text = "I think he can hear you just fine, Em."
+animation = "idle"
+
+[sub_resource type="Resource" id="Resource_brvyb"]
+script = ExtResource("12_fx3kc")
+speaker = NodePath("../NPCDad")
+text = "He's right, you know."
+animation = "idle"
+
+[sub_resource type="Resource" id="Resource_b7rwi"]
+script = ExtResource("12_fx3kc")
+speaker = NodePath(".")
+text = "Well, then he's got no excuse!"
+animation = "idle"
+
+[sub_resource type="Resource" id="Resource_ao43s"]
+resource_local_to_scene = true
+resource_name = "Behavior"
+script = ExtResource("12_brvyb")
+animation = "idle"
+duration = 1.0
+
+[sub_resource type="Resource" id="Resource_copq6"]
+script = ExtResource("12_fx3kc")
+speaker = NodePath("../Player")
+text = "That's right, you had the car last night."
+animation = "idle"
+
+[sub_resource type="Resource" id="Resource_cuwug"]
+script = ExtResource("12_fx3kc")
+speaker = NodePath(".")
+text = "Here you are. Now drive safe!"
+animation = "idle"
 
 [node name="LivingRoom" type="Node2D"]
 
@@ -55,13 +92,13 @@ next_scene = "uid://cckhdrlnfx5c7"
 next_scene_hint = "Bedroom"
 metadata/_edit_group_ = true
 
-[node name="Panel" parent="SceneElements/Exit" index="1"]
+[node name="Panel" parent="SceneElements/Exit" index="0"]
 visible = false
 
-[node name="CollisionShape2D" parent="SceneElements/Exit" index="2"]
+[node name="CollisionShape2D" parent="SceneElements/Exit" index="1"]
 position = Vector2(0, 8)
 
-[node name="Label" parent="SceneElements/Exit" index="3"]
+[node name="Label" parent="SceneElements/Exit" index="2"]
 offset_top = -176.0
 offset_bottom = -153.0
 
@@ -77,27 +114,26 @@ next_scene_hint = "Leave for school"
 prerequisites = [NodePath("../NPCMom/Task")]
 lock_message = "Need car keys"
 
-[node name="Sprite2D" parent="SceneElements/Exit2" index="0"]
-visible = true
-position = Vector2(63.999985, -16.000008)
-scale = Vector2(1.0624996, 288.00003)
-texture = ExtResource("3_wci2e")
-
-[node name="Panel" parent="SceneElements/Exit2" index="1"]
+[node name="Panel" parent="SceneElements/Exit2" index="0"]
 visible = false
 
-[node name="Label" parent="SceneElements/Exit2" index="3"]
+[node name="Label" parent="SceneElements/Exit2" index="2"]
 offset_left = -56.0
 offset_top = -184.0
 offset_right = 56.0
 offset_bottom = -161.0
 horizontal_alignment = 2
 
+[node name="Gradient" type="Sprite2D" parent="SceneElements/Exit2"]
+position = Vector2(0, -15.999996)
+scale = Vector2(1, 288)
+texture = ExtResource("3_wci2e")
+
 [node name="NPCDad" parent="SceneElements" node_paths=PackedStringArray("target_player") instance=ExtResource("11_4jr8h")]
 position = Vector2(408, 448)
 target_player = NodePath("../Player")
 tint = Color(0.39607844, 1, 0.56078434, 1)
-behaviors = Array[Resource]([SubResource("Resource_qrlfb")])
+behaviors = Array[Resource]([SubResource("Resource_wci2e")])
 idle_dialogue = Array[String](["I'm taking Emma to school today."])
 metadata/_edit_group_ = true
 
@@ -141,8 +177,10 @@ texture = ExtResource("9_cuwug")
 position = Vector2(296, 460)
 target_player = NodePath("../Player")
 tint = Color(1, 0.5294118, 0.81960785, 1)
-behaviors = Array[Resource]([SubResource("Resource_wci2e")])
+behaviors = Array[Resource]([SubResource("Resource_fx3kc")])
 idle_dialogue = Array[String](["Dad, we're gonna be late!"])
+complex_dialogue = Array[Resource]([SubResource("Resource_0em5k"), SubResource("Resource_4jr8h"), SubResource("Resource_brvyb"), SubResource("Resource_b7rwi")])
+complex_dialogue_type = 0
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="SceneElements/NPCEmma" index="0"]
@@ -159,10 +197,11 @@ texture = ExtResource("13_b7rwi")
 position = Vector2(1080, 456)
 target_player = NodePath("../Player")
 tint = Color(1, 0.8980392, 0.34901962, 1)
-behaviors = Array[Resource]([SubResource("Resource_fx3kc")])
+behaviors = Array[Resource]([SubResource("Resource_ao43s")])
 idle_dialogue = Array[String](["Have a great day at school, sweetie!"])
-assign_dialogue = "Have a great... ah, I have your keys, don't ?"
+assign_dialogue = "Have a great... ah, I have your keys, don't I?"
 turn_in_dialogue = "Here you are! Drive safe!"
+complex_dialogue = Array[Resource]([SubResource("Resource_copq6"), SubResource("Resource_cuwug")])
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="SceneElements/NPCMom" index="0"]
@@ -208,8 +247,10 @@ limit_bottom = 800
 [connection signal="say" from="SceneElements/NPCDad" to="DialogueBox" method="_on_npc_say"]
 [connection signal="turn_in" from="SceneElements/NPCDad" to="HUD" method="_on_entity_turn_in"]
 [connection signal="say" from="SceneElements/NPCEmma" to="DialogueBox" method="_on_npc_say"]
+[connection signal="start_conversation" from="SceneElements/NPCEmma" to="DialogueBox" method="_on_npc_start_conversation"]
 [connection signal="assign" from="SceneElements/NPCMom" to="HUD" method="_on_entity_assign"]
 [connection signal="say" from="SceneElements/NPCMom" to="DialogueBox" method="_on_npc_say"]
+[connection signal="start_conversation" from="SceneElements/NPCMom" to="DialogueBox" method="_on_npc_start_conversation"]
 [connection signal="turn_in" from="SceneElements/NPCMom" to="SceneElements/Exit2" method="_on_entity_turn_in"]
 [connection signal="turn_in" from="SceneElements/NPCMom" to="HUD" method="_on_entity_turn_in"]
 [connection signal="turn_in_unwarn" from="SceneElements/NPCMom" to="HUD" method="_on_entity_turn_in_unwarn"]

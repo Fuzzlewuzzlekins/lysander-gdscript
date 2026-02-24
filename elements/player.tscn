@@ -5,7 +5,7 @@
 [ext_resource type="SpriteFrames" uid="uid://d2taa77bw3fh6" path="res://elements/lysander_sf_base.tres" id="2_veuqq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
-size = Vector2(96, 256)
+size = Vector2(128, 256)
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_onrkg")
