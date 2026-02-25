@@ -1,11 +1,11 @@
-[gd_scene load_steps=48 format=3 uid="uid://d0dn1m0mgpbha"]
+[gd_scene load_steps=46 format=3 uid="uid://d0dn1m0mgpbha"]
 
 [ext_resource type="PackedScene" uid="uid://cds4k72xvmuhp" path="res://elements/exit.tscn" id="1_alyfl"]
 [ext_resource type="Texture2D" uid="uid://mfliidafjdvl" path="res://assets/door.png" id="3_iyfjq"]
 [ext_resource type="Texture2D" uid="uid://bbg7gh8xcj1bn" path="res://elements/gradient1d.tres" id="3_wci2e"]
 [ext_resource type="PackedScene" uid="uid://bfhhyigp58xxk" path="res://elements/player.tscn" id="4_qrlfb"]
 [ext_resource type="Texture2D" uid="uid://hnvqpbvcaf7b" path="res://assets/dining_chair_2.png" id="6_fx3kc"]
-[ext_resource type="Texture2D" uid="uid://op3pg6kud00v" path="res://assets/dad_idle_temp.png" id="6_iyfjq"]
+[ext_resource type="Texture2D" uid="uid://op3pg6kud00v" path="res://assets/characters/dad_idle_temp.png" id="6_iyfjq"]
 [ext_resource type="Texture2D" uid="uid://cbabk8riuns6g" path="res://assets/dining_table_back.png" id="7_ao43s"]
 [ext_resource type="Texture2D" uid="uid://muyfm6kbnuj4" path="res://assets/lysander_temp_sprite.png" id="7_copq6"]
 [ext_resource type="Texture2D" uid="uid://d3buu1yodqn1u" path="res://assets/dining_chair_1.png" id="8_copq6"]
@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://b6rg1hfp63y7e" path="res://elements/npc.tscn" id="11_4jr8h"]
 [ext_resource type="Script" uid="uid://bg13hbqhqin30" path="res://elements/behavior.gd" id="12_brvyb"]
 [ext_resource type="Script" uid="uid://bih2y4dm2dcy4" path="res://elements/dialogue_line.gd" id="12_fx3kc"]
-[ext_resource type="Texture2D" uid="uid://o2jlvaakw1na" path="res://assets/mom_idle_temp.png" id="12_qrlfb"]
-[ext_resource type="Texture2D" uid="uid://c3vlh571vg7kh" path="res://assets/emmeline_idle_temp.png" id="13_b7rwi"]
+[ext_resource type="SpriteFrames" uid="uid://ced7g6bh6wmh" path="res://elements/emmeline_sf.tres" id="13_ao43s"]
+[ext_resource type="SpriteFrames" uid="uid://dcy2hkjvlb822" path="res://elements/mom_sf.tres" id="14_ao43s"]
 [ext_resource type="PackedScene" uid="uid://b36tyxmpgb1cq" path="res://elements/dialogue_box.tscn" id="16_wci2e"]
 [ext_resource type="PackedScene" uid="uid://cwfxmpapwke63" path="res://elements/task.tscn" id="17_ao43s"]
 [ext_resource type="PackedScene" uid="uid://bue6448e60wtb" path="res://elements/hud.tscn" id="17_fx3kc"]
@@ -163,7 +163,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="Resource" id="Resource_3kcmy"]
+[sub_resource type="Resource" id="Resource_pb46f"]
 resource_local_to_scene = true
 resource_name = "Behavior"
 script = ExtResource("12_brvyb")
@@ -174,14 +174,14 @@ duration = 1.0
 script = ExtResource("12_fx3kc")
 speaker = NodePath(".")
 text = "Hey, Sander! Tell Dad to move his butt!"
-animation = "idle"
+animation = "talk"
 facing = NodePath("../Player")
 
 [sub_resource type="Resource" id="Resource_4jr8h"]
 script = ExtResource("12_fx3kc")
 speaker = NodePath("../Player")
 text = "I think he can hear you just fine, Em."
-animation = "idle"
+animation = "talk"
 facing = NodePath(".")
 
 [sub_resource type="Resource" id="Resource_brvyb"]
@@ -195,86 +195,10 @@ facing = NodePath("../Player")
 script = ExtResource("12_fx3kc")
 speaker = NodePath(".")
 text = "Well, then he's got no excuse!"
-animation = "idle"
+animation = "talk"
 facing = NodePath("../NPCDad")
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_clei5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("13_b7rwi")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i3pqv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hqtel")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sweqy")
-}],
-"loop": false,
-"name": &"sit",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2hs0m")
-}],
-"loop": true,
-"name": &"sit_idle",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1jxqw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dw050")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b26j0")
-}],
-"loop": false,
-"name": &"stand",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n7ghd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nvl01")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ivps1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_urp6f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bwjto")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_606se")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u1c27")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_op7ga")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 10.0
-}]
-
-[sub_resource type="Resource" id="Resource_k0nn3"]
+[sub_resource type="Resource" id="Resource_3kcmy"]
 resource_local_to_scene = true
 resource_name = "Behavior"
 script = ExtResource("12_brvyb")
@@ -285,98 +209,22 @@ duration = 1.0
 script = ExtResource("12_fx3kc")
 speaker = NodePath(".")
 text = "Have a great... ah, I have your keys, don't I?"
-animation = "idle"
+animation = "talk"
 facing = NodePath("../Player")
 
 [sub_resource type="Resource" id="Resource_copq6"]
 script = ExtResource("12_fx3kc")
 speaker = NodePath("../Player")
 text = "That's right, you had the car last night."
-animation = "idle"
+animation = "talk"
 facing = NodePath(".")
 
 [sub_resource type="Resource" id="Resource_cuwug"]
 script = ExtResource("12_fx3kc")
 speaker = NodePath(".")
 text = "Well, let me know when you're ready to leave."
-animation = "idle"
+animation = "talk"
 facing = NodePath("../Player")
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_o28bs"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("12_qrlfb")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i3pqv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hqtel")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sweqy")
-}],
-"loop": false,
-"name": &"sit",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2hs0m")
-}],
-"loop": true,
-"name": &"sit_idle",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1jxqw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dw050")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b26j0")
-}],
-"loop": false,
-"name": &"stand",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n7ghd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nvl01")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ivps1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_urp6f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bwjto")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_606se")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u1c27")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_op7ga")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 10.0
-}]
 
 [node name="LivingRoom" type="Node2D"]
 
@@ -472,26 +320,24 @@ position = Vector2(504, 512)
 texture = ExtResource("9_cuwug")
 
 [node name="NPCEmma" parent="SceneElements" node_paths=PackedStringArray("target_player") instance=ExtResource("11_4jr8h")]
-position = Vector2(296, 460)
+position = Vector2(264, 448)
 target_player = NodePath("../Player")
 tint = Color(1, 0.5294118, 0.81960785, 1)
-behaviors = Array[Resource]([SubResource("Resource_3kcmy")])
+behaviors = Array[Resource]([SubResource("Resource_pb46f")])
 idle_dialogue = Array[String](["Dad, we're gonna be late!"])
 complex_dialogue = Array[Resource]([SubResource("Resource_0em5k"), SubResource("Resource_4jr8h"), SubResource("Resource_brvyb"), SubResource("Resource_b7rwi")])
 complex_dialogue_type = 0
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="SceneElements/NPCEmma" index="0"]
-sprite_frames = SubResource("SpriteFrames_clei5")
-
-[node name="CollisionShape2D" parent="SceneElements/NPCEmma" index="1"]
-position = Vector2(0, 4)
+sprite_frames = ExtResource("13_ao43s")
+animation = &"talk"
 
 [node name="NPCMom" parent="SceneElements" node_paths=PackedStringArray("target_player") instance=ExtResource("11_4jr8h")]
 position = Vector2(1080, 456)
 target_player = NodePath("../Player")
 tint = Color(1, 0.8980392, 0.34901962, 1)
-behaviors = Array[Resource]([SubResource("Resource_k0nn3")])
+behaviors = Array[Resource]([SubResource("Resource_3kcmy")])
 idle_dialogue = Array[String](["Have a great day at school, sweetie!"])
 assign_dialogue = "Have a great... ah, I have your keys, don't I?"
 turn_in_dialogue = "Here you are! Drive safe!"
@@ -500,10 +346,8 @@ complex_dialogue_type = 1
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="SceneElements/NPCMom" index="0"]
-sprite_frames = SubResource("SpriteFrames_o28bs")
-
-[node name="CollisionShape2D" parent="SceneElements/NPCMom" index="1"]
-position = Vector2(0, 4)
+sprite_frames = ExtResource("14_ao43s")
+animation = &"talk"
 
 [node name="Task" parent="SceneElements/NPCMom" node_paths=PackedStringArray("turn_in") instance=ExtResource("17_ao43s")]
 offset_left = 232.0
